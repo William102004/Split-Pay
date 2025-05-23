@@ -1,11 +1,13 @@
 using System;
 using System.Runtime.CompilerServices;
+using Split_Play_Libraries.Models;
 
 namespace Split_Pay_Libraries.Models;
 
 public class FamilyMember
 {
     public int id { get; set; }
+    public List<Expense?> expenses { get; set; }
     public string? Name { get; set; }
     public string? email { get; set; }
     public string? phone { get; set; }

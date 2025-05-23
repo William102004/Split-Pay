@@ -9,7 +9,6 @@ public class Expense
     public int? id { get; set; }
     public string? name { get; set; }
     public double? amount { get; set; }
-    public DateTime date { get; set; }
     public int month { get; set; }
     public int year { get; set; }
     public int Day { get; set; }
@@ -24,7 +23,7 @@ public class Expense
     {
         get
         {
-            return $"{id}.{name}: ${amount} on {date.ToShortDateString()}, Category: {category}, Description: {description}, Recurring: {Recurring}, Frequency: {frequency}";
+            return $"{id}.{name}: ${amount} on {month},{Day},{year}, Category: {category}, Description: {description}, Recurring: {Recurring}, Frequency: {frequency}";
         }
     }
 
@@ -32,10 +31,9 @@ public class Expense
     {
         name = string.Empty;
         amount = 0.0;
-        date = DateTime.Now;
-        month = date.Month;
-        year = date.Year;
-        Day = date.Day;
+        month = DateTime.Now.Month;
+        year = DateTime.Now.Year;
+        Day = DateTime.Now.Day;
         category = string.Empty;
         description = string.Empty;
         Recurring = false;
@@ -47,7 +45,6 @@ public class Expense
         id = Id;
         name = Name;
         amount = Amount;
-        date = new DateTime(Year, Month, Day);
         month = Month;
         year = Year;
         Day = day;

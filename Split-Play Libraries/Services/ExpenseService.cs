@@ -51,6 +51,7 @@ public class ExpenseService
             FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
             if (familyMember != null)
             {
+                familyMember.expenses.Add(expense);
                 familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) - Amount, 2);
             }
             return expense;
@@ -66,6 +67,7 @@ public class ExpenseService
             FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
             if (familyMember != null)
             {
+                familyMember.expenses.Remove(expense);
                 familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) + (double)(expense.amount ?? 0), 2);
             }
         }
