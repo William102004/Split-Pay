@@ -11,6 +11,7 @@ namespace SplitPay
         {
             List<FamilyMember?> Household = HouseHoldService.Current.Household;
             Console.WriteLine("Welcome to SplitPay!");
+            Console.WriteLine("A family expense tracker.");
             Console.WriteLine("Please create your account:");
             Console.WriteLine("Please enter your name:");
             string? name = Console.ReadLine();

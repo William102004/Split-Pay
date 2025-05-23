@@ -10,7 +10,24 @@ public class FamilyMember
     public string? email { get; set; }
     public string? phone { get; set; }
     public string? address { get; set; }
-    public double? balance { get; set; }
+    public double? balance  
+    {
+        get
+        {
+            return balance;
+        }
+        set
+        {
+            if (value != null)
+            {
+                balance = Math.Round((double)value, 2);
+            }
+            else
+            {
+                balance = 0.0;
+            }
+        }
+    }
 
     public String? Display
     {
