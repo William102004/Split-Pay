@@ -1,4 +1,5 @@
 using System;
+using System.Dynamic;
 using System.Runtime.CompilerServices;
 using Split_Pay_Libraries.Models;
 
@@ -6,12 +7,14 @@ namespace Split_Pay_Libraries.Services;
 
 public class HouseHoldService
 {
-    double HouseholdBalance = 0.0;
-    string? HouseHoldName = string.Empty;
-    
+     double HouseholdBalance = 0.0;
+    string? HouseHoldName { get; set; }
+  
+
     private HouseHoldService()
     {
         Household = new List<FamilyMember?>();
+
     }
 
     private int LastKey

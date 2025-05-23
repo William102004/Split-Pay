@@ -12,19 +12,13 @@ namespace SplitPay
             List<FamilyMember?> Household = HouseHoldService.Current.Household;
             Console.WriteLine("Welcome to SplitPay!");
             Console.WriteLine("A family expense tracker.");
-            Console.WriteLine("Please create your account:");
-            Console.WriteLine("Please enter your name:");
-            string? name = Console.ReadLine();
-            Console.WriteLine("Please enter your email:");
-            string? email = Console.ReadLine();
-            Console.WriteLine("Please enter your phone number:");
-            string? phone = Console.ReadLine();
-            Console.WriteLine("Please enter your address:");
-            string? address = Console.ReadLine();
-            Console.WriteLine("Please enter your balance:");
-            double? balance = double.Parse(Console.ReadLine() ?? "0");
-
+            Console.WriteLine("----------------------------------");
             Console.WriteLine("Please enter name for the Household:");
+            string? HouseName = Console.ReadLine();
+           
+            
+            
+
             
         }
     }
