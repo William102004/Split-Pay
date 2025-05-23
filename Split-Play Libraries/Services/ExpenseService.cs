@@ -45,16 +45,30 @@ public class ExpenseService
 
     public Expense AddExpense(int id, string Name, double Amount, int Month, int year, int day, string category, string description, bool recurring, string frequency)
     {
-        int newId = LastKey + 1;
-        Expense expense = new Expense(newId, Name, Amount, Month, year, day, category, description, recurring, frequency);
-        Expenses.Add(expense);
-        FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
-        if (familyMember != null)
-        {
-            familyMember.balance = Math.Round((double)(familyMember.balance ?? 0) - Amount, 2);
-        }
-        return expense;
+            int newId = LastKey + 1;
+            Expense expense = new Expense(newId, Name, Amount, Month, year, day, category, description, recurring, frequency);
+            Expenses.Add(expense);
+            FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
+            if (familyMember != null)
+            {
+                familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) - Amount, 2);
+            }
+            return expense;
+        
+    }
 
+    public void RemoveExpense(int id)
+    {
+        Expense? expense = GetExpense(id);
+        if (expense != null)
+        {
+            Expenses.Remove(expense);
+            FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
+            if (familyMember != null)
+            {
+                familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) + (double)(expense.amount ?? 0), 2);
+            }
+        }
     }
     public Expense? GetExpense(int id)
     {

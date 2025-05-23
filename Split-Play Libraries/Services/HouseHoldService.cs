@@ -7,10 +7,8 @@ namespace Split_Pay_Libraries.Services;
 
 public class HouseHoldService
 {
-     double HouseholdBalance = 0.0;
-    string? HouseHoldName { get; set; }
-  
-
+    public double HouseholdBalance = 0.0;
+    public string? HouseHoldName { get; set; }
     private HouseHoldService()
     {
         Household = new List<FamilyMember?>();
@@ -70,10 +68,10 @@ public class HouseHoldService
 
     public bool RemoveFamilyMember(int id)
     {
-        FamilyMember? familyMember = GetFamilyMember(id);
+        FamilyMember? familyMember = Household.FirstOrDefault(f => f?.id == id);
         if (familyMember != null)
         {
-            HouseholdBalance = Math.Round(HouseholdBalance - familyMember.balance ?? 0.0, 2);
+            HouseholdBalance = Math.Round(HouseholdBalance - familyMember.Balance ?? 0.0, 2);
             return Household.Remove(familyMember);
         }
 
@@ -82,11 +80,12 @@ public class HouseHoldService
 
     public void UpdateMemberBalance(int id, double newBalance)
     {
-        FamilyMember? familyMember = GetFamilyMember(id);
+        var familyMember = GetFamilyMember(id);
         if (familyMember != null)
         {
-            HouseholdBalance = Math.Round(HouseholdBalance - familyMember.balance ?? 0.0 + newBalance, 2);
-            familyMember.balance = newBalance;
+            HouseholdBalance = Math.Round(HouseholdBalance - familyMember.Balance ?? 0.0 + newBalance, 2);
+            familyMember.Balance = newBalance;
+            HouseholdBalance = Math.Round(HouseholdBalance + newBalance, 2);
         }
     }
     public double GetHouseholdBalance()
