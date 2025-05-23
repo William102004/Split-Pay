@@ -1,0 +1,156 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj": {}
+  },
+  "projects": {
+    "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj",
+        "projectName": "Split-Pay",
+        "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj",
+        "packagesPath": "/Users/williamalmaguer/.nuget/packages/",
+        "outputPath": "/Users/williamalmaguer/Split-Pay/Split-Pay/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/williamalmaguer/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj": {
+                "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj",
+        "projectName": "Split-Pay Libraries",
+        "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj",
+        "packagesPath": "/Users/williamalmaguer/.nuget/packages/",
+        "outputPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/williamalmaguer/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
