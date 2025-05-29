@@ -1,19 +1,6 @@
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay.deps.json
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay.runtimeconfig.json
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay.dll
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay.pdb
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay Libraries.dll
-/Users/williamalmaguer/Split-Pay/Split-Pay/bin/Debug/net8.0/Split-Pay Libraries.pdb
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.csproj.AssemblyReference.cache
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.GeneratedMSBuildEditorConfig.editorconfig
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.AssemblyInfoInputs.cache
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.AssemblyInfo.cs
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.csproj.CoreCompileInputs.cache
 /Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.sourcelink.json
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.csproj.Up2Date
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.dll
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/refint/Split-Pay.dll
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.pdb
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.genruntimeconfig.cache
-/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/ref/Split-Pay.dll
