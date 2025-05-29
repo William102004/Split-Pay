@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using Split_Play_Libraries.Models;
 using Split_Play_Libraries.Services;
-
+/*
 namespace SplitPay
 {
     internal class Program
@@ -259,4 +259,4 @@ namespace SplitPay
             }
         }
     }
-}
+}*/
