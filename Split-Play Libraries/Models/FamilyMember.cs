@@ -1,3 +1,4 @@
+
 using System;
 using System.Runtime.CompilerServices;
 using Split_Play_Libraries.Models;
@@ -13,6 +14,7 @@ public class FamilyMember
     public string? phone { get; set; }
     public string? address { get; set; }
     private double? balance;
+    
     public double? Balance
     {
         get
@@ -47,13 +49,17 @@ public class FamilyMember
         phone = string.Empty;
         address = string.Empty;
         balance = 0.0;
+        expenses = new List<Expense?>(); // Initialize expenses list
     }
-    public FamilyMember(int id ,string name, string Email, string Phone, string Address, double Balance)
+    
+    public FamilyMember(int id, string name, string Email, string Phone, string Address, double Balance)
     {
+        this.id = id; // Set the ID properly
         Name = name;
         email = Email;
         phone = Phone;
         address = Address;
         balance = Balance;
+        expenses = new List<Expense?>(); // Initialize expenses list
     }
 }

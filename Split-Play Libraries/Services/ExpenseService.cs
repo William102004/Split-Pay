@@ -43,28 +43,39 @@ public class ExpenseService
     }
     public List<Expense?> Expenses { get; private set; }
 
-    public Expense AddExpense(int id, string Name, double Amount, int Month, int year, int day, string category, string description, bool recurring, string frequency)
+   
+    public Expense AddExpense(int familyMemberId, string Name, double Amount, int Month, int year, int day, string category, string description, bool recurring, string frequency)
     {
-            int newId = LastKey + 1;
-            Expense expense = new Expense(newId, Name, Amount, Month, year, day, category, description, recurring, frequency);
-            Expenses.Add(expense);
-            FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
-            if (familyMember != null)
-            {
-                familyMember.expenses.Add(expense);
-                familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) - Amount, 2);
-            }
-            return expense;
+        int newId = LastKey + 1;
+        Expense expense = new Expense(newId, Name, Amount, Month, year, day, category, description, recurring, frequency);
+        Expenses.Add(expense);
         
+       
+        FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == familyMemberId);
+        if (familyMember != null)
+        {
+           
+            if (familyMember.expenses == null)
+            {
+                familyMember.expenses = new List<Expense?>();
+            }
+            
+            familyMember.expenses.Add(expense);
+            familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) - Amount, 2);
+        }
+        return expense;
     }
 
-    public void RemoveExpense(int id)
+    public void RemoveExpense(int expenseId)
     {
-        Expense? expense = GetExpense(id);
+        Expense? expense = GetExpense(expenseId);
         if (expense != null)
         {
             Expenses.Remove(expense);
-            FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == id);
+            
+            FamilyMember? familyMember = HouseHoldService.Current.Household
+                .FirstOrDefault(f => f?.expenses?.Any(e => e?.id == expenseId) == true);
+            
             if (familyMember != null)
             {
                 familyMember.expenses.Remove(expense);
@@ -72,15 +83,14 @@ public class ExpenseService
             }
         }
     }
+    
     public Expense? GetExpense(int id)
     {
         return Expenses.FirstOrDefault(e => e?.id == id);
     }
+    
     public List<Expense?> GetAllExpenses()
     {
         return Expenses.ToList();
     }
-
-
-
 }
