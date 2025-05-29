@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split-Pay", "Split-Pay\Spli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split-Pay Libraries", "Split-Play Libraries\Split-Pay Libraries.csproj", "{2784A2C4-0979-457F-833A-F23C943E60E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitPayApp", "SplitPayApp\SplitPayApp.csproj", "{6C5F5541-4417-4037-A0FD-8BC257FA64D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2784A2C4-0979-457F-833A-F23C943E60E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2784A2C4-0979-457F-833A-F23C943E60E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2784A2C4-0979-457F-833A-F23C943E60E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C5F5541-4417-4037-A0FD-8BC257FA64D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C5F5541-4417-4037-A0FD-8BC257FA64D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C5F5541-4417-4037-A0FD-8BC257FA64D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C5F5541-4417-4037-A0FD-8BC257FA64D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
