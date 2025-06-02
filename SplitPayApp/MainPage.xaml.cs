@@ -13,7 +13,6 @@ public partial class MainPage : ContentPage
 
 	private void CreateHouseholdButton_Clicked(object sender, EventArgs e)
 	{
-		
 		Shell.Current.GoToAsync("//HouseholdMainPage");
 	}
 }
