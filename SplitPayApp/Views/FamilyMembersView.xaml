@@ -15,7 +15,6 @@
                     <Label Text="{Binding HouseholdBalance,StringFormat=Empty'Total Balance: ${0:F2}'}"
                         FontSize="18"
                         FontAttributes="Bold"
-                        FontAttributes="Bold"
                         VerticalOptions="Center"/>          
                 </StackLayout>
             </Frame>
@@ -76,6 +75,56 @@
                         CornerRadius="10"/>
                 </StackLayout>
             </Frame>
-        
+
+            <!-- Family Members List -->
+            <Frame BackgroundColor="White" HasShadow="True" CornerRadius="15" Padding="20">
+                <StackLayout Spacing="15">
+                    <Label Text="Family Members"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        />
+                    <CollectionView ItemsSource="{Binding FamilyMembers}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10" RowDefinitions="Auto, Auto,Auto,Auto,Auto">
+                                    <Frame Grid.Row="0"
+                                        BackgroundColor="LightGray"
+                                        HasShadow="False"
+                                        CornerRadius="10"
+                                        Padding="15">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <StackLayout Grid.Column="0">
+                                                <Label Text="{Binding Name}"
+                                                    FontSize="18"
+                                                    FontAttributes="Bold"/>
+                                                <Label Text="{Binding Email,StringFormat='Email: {0}'}"
+                                                    FontSize="14"/>
+                                                <Label Text="{Binding Phone,StringFormat='Phone: {0}'}"
+                                                    FontSize="14"/>
+                                                <Label Text="{Binding Address,StringFormat='Address: {0}'}"
+                                                    FontSize="14"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                                <Label Text="Binding Balance, StringFormat='Balance: ${0:F2}'"
+                                                    FontSize="18"
+                                                    FontAttributes="Bold"
+                                                    HorizontalOptions="End"
+                                                    />
+                                                <Button Text="Remove"
+                                                    Clicked="RemoveMemberButton_Clicked"
+                                                    TextColor="White"
+                                                    CornerRadius="5"
+                                                    WidthRequest="40"
+                                                    HeightRequest="30" />
+                                            </StackLayout>                                          
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        </CollectionView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </ScrollView>
 </ContentView>
