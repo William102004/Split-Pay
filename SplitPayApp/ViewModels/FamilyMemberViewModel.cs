@@ -1,15 +1,29 @@
 using System;
+using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat;
 using Split_Pay_Libraries.Models;
+using Split_Pay_Libraries.Services;
 using Split_Play_Libraries.Services;
 
 namespace SplitPayApp.ViewModels;
 
 public class FamilyMemberViewModel : BaseViewModel
 {
+
     private FamilyMember? CachedFamilyMember { get; set; }
+    private HouseHoldService HouseHoldService = HouseHoldService.Current;
+
+    public ObservableCollection<FamilyMember?> FamilyMembers
+    {
+        get
+        {
+            var FamilyMembers = HouseHoldService.Household;
+            return new ObservableCollection<FamilyMember?>(FamilyMembers);
+        }
+    }
     public FamilyMember? FamilyMember { get; set; }
 
+    public FamilyMember? SelectedFamilyMember { get; set; }
     public string? Name
     {
         get
@@ -18,7 +32,7 @@ public class FamilyMemberViewModel : BaseViewModel
         }
         set
         {
-            if(FamilyMember != null && FamilyMember.Name != value)
+            if (FamilyMember != null && FamilyMember.Name != value)
             {
                 FamilyMember.Name = value;
             }
@@ -32,7 +46,7 @@ public class FamilyMemberViewModel : BaseViewModel
         }
         set
         {
-            if(FamilyMember != null && FamilyMember.email != value)
+            if (FamilyMember != null && FamilyMember.email != value)
             {
                 FamilyMember.email = value;
             }
@@ -46,7 +60,7 @@ public class FamilyMemberViewModel : BaseViewModel
         }
         set
         {
-            if(FamilyMember != null && FamilyMember.phone != value)
+            if (FamilyMember != null && FamilyMember.phone != value)
             {
                 FamilyMember.phone = value;
             }
@@ -60,7 +74,7 @@ public class FamilyMemberViewModel : BaseViewModel
         }
         set
         {
-            if(FamilyMember != null && FamilyMember.address != value)
+            if (FamilyMember != null && FamilyMember.address != value)
             {
                 FamilyMember.address = value;
             }
@@ -74,13 +88,42 @@ public class FamilyMemberViewModel : BaseViewModel
         }
         set
         {
-            if(FamilyMember != null && FamilyMember.Balance != value)
+            if (FamilyMember != null && FamilyMember.Balance != value)
             {
                 FamilyMember.Balance = value;
             }
         }
     }
-    
+
+    public void AddFamilyMember()
+    {
+        HouseHoldService.Current.AddFamilyMember(FamilyMember?.Name ?? string.Empty,
+            FamilyMember?.email ?? string.Empty,
+            FamilyMember?.phone ?? string.Empty,
+            FamilyMember?.address ?? string.Empty,
+            FamilyMember?.Balance ?? 0.0);
+        refreshFamilyMembers();
+      
+    }
+    public void RemoveFamilyMember()
+    {
+        if (SelectedFamilyMember != null)
+        {
+            HouseHoldService.Current.RemoveFamilyMember(SelectedFamilyMember.id);
+            SelectedFamilyMember = null;
+        }
+        refreshFamilyMembers();
+    }
+
+    public void UpdateMemberBalance(double newBalance)
+    {
+        HouseHoldService.Current.UpdateMemberBalance(SelectedFamilyMember?.id ?? 0, newBalance);
+        if (SelectedFamilyMember != null)
+        {
+            SelectedFamilyMember.Balance = newBalance;
+            NotifyPropertyChanged(nameof(SelectedFamilyMember));
+        }
+    }
 
     public FamilyMemberViewModel()
     {
@@ -95,5 +138,10 @@ public class FamilyMemberViewModel : BaseViewModel
         {
             CachedFamilyMember = new FamilyMember(familyMember.id, familyMember.Name, familyMember.email, familyMember.phone, familyMember.address, familyMember.Balance ?? 0.0);
         }
+    }
+
+    public void refreshFamilyMembers()
+    {
+        NotifyPropertyChanged(nameof(FamilyMembers));
     }
 }
