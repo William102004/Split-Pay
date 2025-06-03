@@ -75,16 +75,15 @@ public class HouseHoldService
         return Household.Where(m => m != null).ToList();
     }
 
-    public bool RemoveFamilyMember(int id)
+    public FamilyMember? RemoveFamilyMember(int id)
     {
         FamilyMember? familyMember = Household.FirstOrDefault(f => f?.id == id);
         if (familyMember != null)
         {
             HouseholdBalance = Math.Round(HouseholdBalance - (familyMember.Balance ?? 0.0), 2);
-            return Household.Remove(familyMember);
+            Household.Remove(familyMember);
         }
-
-        return false;
+        return familyMember;
     }
 
     // Fixed: Corrected balance calculation logic

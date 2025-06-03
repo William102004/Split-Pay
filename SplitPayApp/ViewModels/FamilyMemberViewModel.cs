@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat;
 using Split_Pay_Libraries.Models;
 using Split_Pay_Libraries.Services;
 using Split_Play_Libraries.Services;
@@ -105,14 +104,11 @@ public class FamilyMemberViewModel : BaseViewModel
         refreshFamilyMembers();
       
     }
-    public void RemoveFamilyMember()
+    public FamilyMember? RemoveFamilyMember()
     {
-        if (SelectedFamilyMember != null)
-        {
-            HouseHoldService.Current.RemoveFamilyMember(SelectedFamilyMember.id);
-            SelectedFamilyMember = null;
-        }
+        var familyMember = HouseHoldService.RemoveFamilyMember(SelectedFamilyMember?.id ?? 0);
         refreshFamilyMembers();
+        return familyMember;
     }
 
     public void UpdateMemberBalance(double newBalance)

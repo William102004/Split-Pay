@@ -16,5 +16,6 @@
         ContentTemplate="{DataTemplate local:Views.HomeScreenView}"
         Route="HomeScreenView" />
     
+    
 
 </Shell>

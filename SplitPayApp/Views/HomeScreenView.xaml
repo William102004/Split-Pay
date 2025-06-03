@@ -19,8 +19,8 @@
      </ContentPage>
 
     <!-- Expenses Tab -->
-    <ContentPage Title="Expenses" IconImageSource="expenses.png">
-            <views:ExpensesView />
-    </ContentPage>
+     <ContentPage Title="Expenses" IconImageSource="expenses.png">
+            <views:ExpenseView />
+      </ContentPage>
    
 </TabbedPage>
