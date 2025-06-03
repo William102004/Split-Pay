@@ -2,10 +2,80 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SplitPayApp.Views.FamilyMembersView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+
+            <!--Header Section-->
+            <Frame BackgroundColor="LightGray"
+                HasShadow="False"
+                CornerRadius="10"
+                Padding="15">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Balance" FontSize="24" VerticalOptions="Center"/>
+                    <Label Text="{Binding HouseholdBalance,StringFormat=Empty'Total Balance: ${0:F2}'}"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>          
+                </StackLayout>
+            </Frame>
+
+            <!-- Add Family Members -->
+            <Frame BackgroundColor="White" HasShadow="True" CornerRadius="15" Padding="20">
+                <StackLayout Spacing="15">
+                    <Label Text="Add Family Member"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        />
+                    <Entry Placeholder="Name"
+                        Text="{Binding FamilyMember.Name}"
+                        />
+                    <Entry Placeholder="Email"
+                        Text="{Binding FamilyMember.Email}"
+                        Keyboard="Email"
+                        />
+                    <Entry Placeholder="Phone"
+                        Text="{Binding FamilyMember.Phone}"
+                        Keyboard="Telephone"
+                        />
+                    <Entry Placeholder="Address"
+                        Text="{Binding FamilyMember.Address}"
+                        />
+                    <Entry Placeholder="Initial Balance"
+                        Text="{Binding FamilyMember.Balance}"
+                        Keyboard="Numeric"
+                        />
+                    
+                    <Button Text="Add Member"
+                        Clicked="AddMemberButton_Clicked"
+                        BackgroundColor="LightBlue"
+                        TextColor="White"
+                        CornerRadius="10"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Update Balance -->
+            <Frame BackgroundColor="White" HasShadow="True" CornerRadius="15" Padding="20">
+                <StackLayout Spacing="15">
+                    <Label Text="Update Member Balance"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        />
+                    <Picker Title="Select Member"
+                        ItemsSource="{Binding FamilyMembers}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedMember}"/>
+                    <Entry Placeholder="New Balance"
+                        Text="{Binding NewBalance}"
+                        Keyboard="Numeric"/>
+                    
+                    <Button Text="Update Balance"
+                        Clicked="UpdateBalanceButton_Clicked"
+                        BackgroundColor="LightGreen"
+                        TextColor="White"
+                        CornerRadius="10"/>
+                </StackLayout>
+            </Frame>
+        
+    </ScrollView>
 </ContentView>

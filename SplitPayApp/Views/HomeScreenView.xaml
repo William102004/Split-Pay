@@ -6,19 +6,20 @@
              xmlns:viewModels="clr-namespace:SplitPayApp.ViewModels"
              Title="{Binding HouseholdName}">
 
-     <TabbedPage.BindingContext>
-        <viewModels:FamilyMemberViewModel />
-        <viewModels:ExpenseViewModel />
-     </TabbedPage.BindingContext>
-    
-     <!-- Family Members Tab -->
-     <ContentPage Title="Members" IconImageSource="users.png">
-            <views:FamilyMembersView />
+       <!-- Home Tab -->
+      <ContentPage Title="Members" IconImageSource="users.png">
+        <ContentPage.BindingContext>
+            <viewModels:FamilyMemberViewModel />
+        </ContentPage.BindingContext>
+        <views:FamilyMembersView />
      </ContentPage>
 
     <!-- Expenses Tab -->
      <ContentPage Title="Expenses" IconImageSource="expenses.png">
-            <views:ExpenseView />
+        <ContentPage.BindingContext>
+            <viewModels:ExpenseViewModel />
+        </ContentPage.BindingContext>
+        <views:ExpenseView />
       </ContentPage>
    
 </TabbedPage>
