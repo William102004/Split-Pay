@@ -15,6 +15,14 @@
         Title="HomeScreenView"
         ContentTemplate="{DataTemplate local:Views.HomeScreenView}"
         Route="HomeScreenView" />
+    <ShellContent
+        Title="FamilyMembersView"
+        ContentTemplate="{DataTemplate local:Views.FamilyMembersView}"
+        Route="FamilyMembersView" />
+    <ShellContent   
+        Title="ExpenseView"
+        ContentTemplate="{DataTemplate local:Views.ExpenseView}"
+        Route="ExpenseView" />
     
     
 

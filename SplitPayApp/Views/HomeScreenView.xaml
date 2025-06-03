@@ -4,9 +4,7 @@
              x:Class="SplitPayApp.Views.HomeScreenView"
              xmlns:views="clr-namespace:SplitPayApp.Views"
              xmlns:viewModels="clr-namespace:SplitPayApp.ViewModels"
-             Title="{Binding HouseholdName}"
-             BackGroundColor="#F9FAFB"
-             NavigatedTo="ContentPage_NavigatedTo">
+             Title="{Binding HouseholdName}">
 
      <TabbedPage.BindingContext>
         <viewModels:FamilyMemberViewModel />
