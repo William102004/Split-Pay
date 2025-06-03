@@ -4,7 +4,7 @@
     "net8.0": {
       "Split-Pay Libraries/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": "Unsupported,Version=v0.0",
         "compile": {
           "bin/placeholder/Split-Pay Libraries.dll": {}
         },
@@ -106,5 +106,16 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project Split-Pay Libraries is not compatible with net8.0 (.NETCoreApp,Version=v8.0). Project Split-Pay Libraries supports:\n  - net8.0-android34.0 (.NETCoreApp,Version=v8.0)\n  - net8.0-ios18.0 (.NETCoreApp,Version=v8.0)",
+      "libraryId": "Split-Pay Libraries",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

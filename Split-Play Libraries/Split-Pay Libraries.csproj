@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+   <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+
     <RootNamespace>Split_Play_Libraries</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../SplitPayApp/SplitPayApp.csproj" />
+    
   </ItemGroup>
 
 </Project>
