@@ -19,7 +19,8 @@
         ],
         "originalTargetFrameworks": [
           "net8.0-android",
-          "net8.0-ios"
+          "net8.0-ios",
+          "net8.0-maccatalyst18.0"
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
@@ -32,6 +33,10 @@
           },
           "net8.0-ios18.0": {
             "targetAlias": "net8.0-ios",
+            "projectReferences": {}
+          },
+          "net8.0-maccatalyst18.0": {
+            "targetAlias": "net8.0-maccatalyst18.0",
             "projectReferences": {}
           }
         },
@@ -116,6 +121,10 @@
               "version": "[18.0.8319, 18.0.8319]"
             },
             {
+              "name": "Microsoft.iOS.Runtime.iossimulator-arm64.net8.0_18.0",
+              "version": "[18.0.8319, 18.0.8319]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Ref",
               "version": "[8.0.11, 8.0.11]"
             }
@@ -129,6 +138,57 @@
             }
           },
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        },
+        "net8.0-maccatalyst18.0": {
+          "targetAlias": "net8.0-maccatalyst18.0",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.11, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "xamarinios10",
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.MacCatalyst.Ref.net8.0_18.0",
+              "version": "[18.0.8319, 18.0.8319]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.MacCatalyst": {
+              "privateAssets": "all"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "iossimulator-arm64": {
+          "#import": []
         }
       }
     }

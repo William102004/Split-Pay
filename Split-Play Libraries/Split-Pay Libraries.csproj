@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-   <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
-
+   <TargetFrameworks>net8.0-ios;net8.0-android;net8.0-maccatalyst18.0</TargetFrameworks>
+    <RuntimeIdentifiers>iossimulator-arm64</RuntimeIdentifiers>
     <RootNamespace>Split_Play_Libraries</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
