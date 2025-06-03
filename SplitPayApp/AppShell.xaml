@@ -12,9 +12,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent
-        Title="MainPageView"
-        ContentTemplate="{DataTemplate local:Views.MainPageView}"
-        Route="MainPageView" />
+        Title="HomeScreenView"
+        ContentTemplate="{DataTemplate local:Views.HomeScreenView}"
+        Route="HomeScreenView" />
     
 
 </Shell>

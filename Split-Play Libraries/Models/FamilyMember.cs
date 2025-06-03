@@ -52,7 +52,7 @@ public class FamilyMember
         expenses = new List<Expense?>(); // Initialize expenses list
     }
     
-    public FamilyMember(int id, string name, string Email, string Phone, string Address, double Balance)
+    public FamilyMember(int id, string name, string Email, string Phone, string Address, double? Balance)
     {
         this.id = id; // Set the ID properly
         Name = name;

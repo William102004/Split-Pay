@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SplitPayApp.Views.HomeScreenView">
-             
+             x:Class="SplitPayApp.Views.HomeScreenView"
+             xmlns:views="clr-namespace:SplitPayApp.Views"
+             xmlns:viewModels="clr-namespace:SplitPayApp.ViewModels"
+             Title="{Binding HouseholdName}"
+             BackGroundColor="#F9FAFB"
+             NavigatedTo="ContentPage_NavigatedTo">
+
+     <TabbedPage.BindingContext>
+        <viewModels:FamilyMemberViewModel />
+        <viewModels:ExpenseViewModel />
+     </TabbedPage.BindingContext>
     
-</ContentPage>
+     <!-- Family Members Tab -->
+     <ContentPage Title="Members" IconImageSource="users.png">
+            <views:FamilyMembersView />
+     </ContentPage>
+
+    <!-- Expenses Tab -->
+    <ContentPage Title="Expenses" IconImageSource="expenses.png">
+            <views:ExpensesView />
+    </ContentPage>
+   
+</TabbedPage>

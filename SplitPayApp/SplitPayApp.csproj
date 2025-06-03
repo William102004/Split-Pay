@@ -66,8 +66,4 @@
 	  <ProjectReference Include="../Split-Play Libraries/Split-Pay Libraries.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="ViewModels/" />
-	</ItemGroup>
-
 </Project>
