@@ -2,10 +2,160 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SplitPayApp.Views.ExpenseView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!--Add Expense Section-->
+            <Frame BackgroundColor="LightGray"
+                HasShadow="False"
+                CornerRadius="10"
+                Padding="15">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                   <Label Text="Add Expense" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                           
+                    <Picker Title="Select Member"
+                            ItemsSource="{Binding FamilyMembers}"
+                            SelectedItem="{Binding SelectedMember}"
+                            ItemDisplayBinding="{Binding Name}"
+                            />
+                    <Entry Placeholder="Expense Name"
+                           Text="{Binding Name}"
+                        />
+                    <Entry Placeholder="Amount"
+                           Text="{Binding Amount}"
+                           Keyboard="Numeric"
+                        />
+                    <Grid ColumnDefinitions="*, *,*">
+                        <Entry Grid.Column="0"
+                               Placeholder="Month"
+                               Text="{Binding Month}"
+                               Keyboard="Numeric"
+                               />
+                        <Entry Grid.Column="1"
+                                 Placeholder="Day"
+                                 Text="{Binding Day}"
+                                 Keyboard="Numeric"
+                                 />
+                        <Entry Grid.Column="2"
+                                Placeholder="Year"
+                                Text="{Binding Year}"
+                                Keyboard="Numeric"
+                                />
+                    </Grid>
+                    <Entry 
+                           Placeholder="Category"
+                           Text="{Binding Category}"
+                        />
+                    <Entry Placeholder="Description"
+                           Text="{Binding Description}"
+                        />
+                    
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Reccurring}" />
+                        <Label Text="Recurring Expense" VerticalOptions="Center"/>
+                    </StackLayout>
+                    
+                    <Entry Placeholder="Frequency(e.g., Monthly)"
+                           Text="{Binding Frequency}"
+                           IsVisible="{Binding Reccurring}"
+                        />
+                    <Button Text="Add Expense"
+                            Clicked="AddExpenseClicked"
+                            BackgroundColor="LightBlue"
+                            TextColor="White"
+                            CornerRadius="10"/>           
+                </StackLayout>
+            </Frame>
+            <!--Expense List Section-->
+            <Frame BackgroundColor="White"
+                   HasShadow="True"
+                   CornerRadius="15"
+                   Padding="20">
+                <StackLayout Spacing="15">
+                    <Label Text="Expenses by Member"
+                            FontSize="20"
+                            FontAttributes="Bold"/>
+                    <ListView ItemsSource="{Binding Members}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BackgroundColor="LightGray"
+                                           HasShadow="False"
+                                           CornerRadius="10"
+                                             Padding="15"
+                                             Margin="5">
+                                             <StackLayout Spacing="10">
+                                                <Grid ColumnDefinitions="*,Auto">
+                                                    <Label Grid.Column="0"
+                                                              Text="{Binding Name}"
+                                                              FontSize="18"
+                                                              FontAttributes="Bold"/>
+                                                    <Label Grid.Column="1"
+                                                             Text="{Binding Balance, StringFormat='Balance: {0:C}'}"
+                                                            FontSize="16"
+                                                            FontAttributes="Bold" />
+                                                </Grid>
+                                                <ListView ItemsSource="{Binding Expenses}">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ViewCell>
+                                                                <Frame BackgroundColor="White"
+                                                                       HasShadow="False"
+                                                                       CornerRadius="8"
+                                                                       Padding="10"
+                                                                       Margin="2">
+                                                                    <Grid ColumnDefinitions="*,Auto,Auto">
+                                                                            <StackLayout Grid.Column="0">
+                                                                                <Label Text="{Binding Name}"
+                                                                                          FontSize="16"
+                                                                                          FontAttributes="Bold"/>
+                                                                                 <Label FontSize="12" >
+                                                                                    <Label.FormattedText>
+                                                                                        <FormattedString>
+                                                                                            <Span Text="Binding Month}" />
+                                                                                            <Span Text=" / " />
+                                                                                            <Span Text="{Binding Day}" />
+                                                                                            <Span Text=" / " />
+                                                                                            <Span Text="{Binding Year}" />
+                                                                                            <Span Text=" . " />
+                                                                                            <Span Text="{Binding Category}" />
+                                                                                            <Span Text=" . " />
+                                                                                            <Span Text="{Binding Description}" />
+                        
+                                                                                        </FormattedString>
+                                                                                    </Label.FormattedText>
+                                                                                 </Label>
+                                                                            </StackLayout>
+                                                                            <Label Grid.Column="1"
+                                                                                   Text="{Binding Amount, StringFormat='Amount: {0:C}'}"
+                                                                                   FontSize="16"
+                                                                                   FontAttributes="Bold"/>
+                                                                            <Button Grid.Column="2"
+                                                                                    Text="Remove"
+                                                                                    Clicked="RemoveExpenseClicked"                                                                
+                                                                                    TextColor="White"
+                                                                                    BackgroundColor="Red"
+                                                                                    CornerRadius="5"
+                                                                                    WidthRequest="40"
+                                                                                    HeightRequest="30"
+                                                                                    FontAttributes="Bold"
+                                                                                    FontSize="12"
+                                                                                    VerticalOptions="Center"/>
+                                                                    </Grid>
+                                                                </Frame>
+                                                            </ViewCell>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                             </StackLayout>
+                                             </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                 </Frame>   
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentView>
