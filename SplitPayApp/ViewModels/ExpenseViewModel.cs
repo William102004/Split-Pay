@@ -11,8 +11,33 @@ public class ExpenseViewModel : BaseViewModel
 {
     private ExpenseService ExpenseService = ExpenseService.Current;
 
-    public Expense? SelectedExpense { get; set; }
-    private FamilyMember? SelectedFamilyMember { get; set; }
+    private Expense? _SelectedExpense { get; set; }
+    private FamilyMember? _SelectedFamilyMember { get; set; }
+    public Expense? SelectedExpense
+    {
+        get
+        {
+            return _SelectedExpense;
+        }
+        set
+        {
+            _SelectedExpense = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public FamilyMember? SelectedFamilyMember
+    {
+        get
+        {
+            return _SelectedFamilyMember;
+        }
+        set
+        {
+            _SelectedFamilyMember = value;
+            NotifyPropertyChanged();
+        }
+    }
 
     public double HouseholdBalance => HouseHoldService.Current.HouseholdBalance;
 
@@ -39,6 +64,7 @@ public class ExpenseViewModel : BaseViewModel
             }
         }
     }
+    
     public double Amount
     {
         get

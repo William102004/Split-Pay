@@ -1,6 +1,6 @@
 namespace SplitPayApp.Views;
 
-public partial class HomeScreenView : ContentPage
+public partial class HomeScreenView
 {
 	public HomeScreenView()
 	{

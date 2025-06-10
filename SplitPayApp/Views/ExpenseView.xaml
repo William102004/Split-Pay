@@ -56,7 +56,7 @@
                     
                     <Entry Placeholder="Frequency(e.g., Monthly)"
                            Text="{Binding Frequency}"
-                           IsVisible="{Binding Reccurring}"
+                           IsVisible="{Binding Recurring}"
                         />
                     <Button Text="Add Expense"
                             Clicked="AddExpenseClicked"
@@ -111,7 +111,7 @@
                                                                                  <Label FontSize="12" >
                                                                                     <Label.FormattedText>
                                                                                         <FormattedString>
-                                                                                            <Span Text="Binding Month}" />
+                                                                                            <Span Text="{Binding Month}" />
                                                                                             <Span Text=" / " />
                                                                                             <Span Text="{Binding Day}" />
                                                                                             <Span Text=" / " />

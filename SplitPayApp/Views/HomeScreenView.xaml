@@ -7,7 +7,7 @@
              Title="{Binding HouseholdName}">
 
        <!-- Home Tab -->
-      <ContentPage Title="Members" IconImageSource="users.png">
+      <ContentPage Title="Members" >
         <ContentPage.BindingContext>
             <viewModels:FamilyMemberViewModel />
         </ContentPage.BindingContext>
@@ -15,7 +15,7 @@
      </ContentPage>
 
     <!-- Expenses Tab -->
-     <ContentPage Title="Expenses" IconImageSource="expenses.png">
+     <ContentPage Title="Expenses" >
         <ContentPage.BindingContext>
             <viewModels:ExpenseViewModel />
         </ContentPage.BindingContext>
