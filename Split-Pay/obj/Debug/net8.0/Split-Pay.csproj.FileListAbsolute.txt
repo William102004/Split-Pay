@@ -1,0 +1,5 @@
+/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.GeneratedMSBuildEditorConfig.editorconfig
+/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.AssemblyInfoInputs.cache
+/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.AssemblyInfo.cs
+/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.csproj.CoreCompileInputs.cache
+/Users/williamalmaguer/Split-Pay/Split-Pay/obj/Debug/net8.0/Split-Pay.sourcelink.json

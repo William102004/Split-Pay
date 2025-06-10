@@ -14,7 +14,7 @@
                            
                     <Picker Title="Select Member"
                             ItemsSource="{Binding FamilyMembers}"
-                            SelectedItem="{Binding SelectedMember}"
+                            SelectedItem="{Binding SelectedFamilyMember}"
                             ItemDisplayBinding="{Binding Name}"
                             />
                     <Entry Placeholder="Expense Name"
@@ -50,7 +50,7 @@
                         />
                     
                     <StackLayout Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding Reccurring}" />
+                        <CheckBox IsChecked="{Binding Recurring}" />
                         <Label Text="Recurring Expense" VerticalOptions="Center"/>
                     </StackLayout>
                     
@@ -74,7 +74,7 @@
                     <Label Text="Expenses by Member"
                             FontSize="20"
                             FontAttributes="Bold"/>
-                    <ListView ItemsSource="{Binding Members}">
+                    <ListView ItemsSource="{Binding FamilyMembers}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

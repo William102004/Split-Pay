@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "0n1Y9B7MBKQ=",
+  "dgSpecHash": "U784T6HLTFI=",
   "success": true,
   "projectFilePath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj",
   "expectedPackageFiles": [
     "/Users/williamalmaguer/.nuget/packages/microsoft.net.illink.tasks/8.0.11/microsoft.net.illink.tasks.8.0.11.nupkg.sha512",
+    "/Users/williamalmaguer/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "/Users/williamalmaguer/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.ios.ref.net8.0_18.0/18.0.8319/microsoft.ios.ref.net8.0_18.0.18.0.8319.nupkg.sha512",
