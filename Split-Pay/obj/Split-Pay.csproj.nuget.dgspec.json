@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj": {}
+    "/Users/williamalmaguer/Split-Pay-1/Split-Pay/Split-Pay.csproj": {}
   },
   "projects": {
-    "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj": {
+    "/Users/williamalmaguer/Split-Pay-1/Split-Pay/Split-Pay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj",
+        "projectUniqueName": "/Users/williamalmaguer/Split-Pay-1/Split-Pay/Split-Pay.csproj",
         "projectName": "Split-Pay",
-        "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Pay/Split-Pay.csproj",
+        "projectPath": "/Users/williamalmaguer/Split-Pay-1/Split-Pay/Split-Pay.csproj",
         "packagesPath": "/Users/williamalmaguer/.nuget/packages/",
-        "outputPath": "/Users/williamalmaguer/Split-Pay/Split-Pay/obj/",
+        "outputPath": "/Users/williamalmaguer/Split-Pay-1/Split-Pay/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/williamalmaguer/.nuget/NuGet/NuGet.Config"
@@ -27,8 +27,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj": {
-                "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj"
+              "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj": {
+                "projectPath": "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj"
               }
             }
           }
@@ -82,14 +82,14 @@
         }
       }
     },
-    "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj": {
+    "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj",
+        "projectUniqueName": "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj",
         "projectName": "Split-Pay Libraries",
-        "projectPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/Split-Pay Libraries.csproj",
+        "projectPath": "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj",
         "packagesPath": "/Users/williamalmaguer/.nuget/packages/",
-        "outputPath": "/Users/williamalmaguer/Split-Pay/Split-Play Libraries/obj/",
+        "outputPath": "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -99,7 +99,7 @@
           "net8.0",
           "net8.0-android",
           "net8.0-ios",
-          "net8.0-maccatalyst18.0"
+          "net8.0-maccatalyst"
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
@@ -119,7 +119,7 @@
             "projectReferences": {}
           },
           "net8.0-maccatalyst18.0": {
-            "targetAlias": "net8.0-maccatalyst18.0",
+            "targetAlias": "net8.0-maccatalyst",
             "projectReferences": {}
           }
         },
@@ -253,7 +253,7 @@
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-maccatalyst18.0": {
-          "targetAlias": "net8.0-maccatalyst18.0",
+          "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",

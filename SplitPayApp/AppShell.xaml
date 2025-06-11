@@ -7,23 +7,25 @@
     Shell.FlyoutBehavior="Disabled"
     Title="SplitPayApp">
 
+ <TabBar>
+        <Tab Title="Family Members" Icon="person.png">
+            <ShellContent
+                Title="Members"
+                ContentTemplate="{DataTemplate local:Views.FamilyMembersView}"
+                Route="FamilyMembersView" />
+        </Tab>
+        
+        <Tab Title="Expenses" Icon="receipt.png">
+            <ShellContent
+                Title="Expenses"
+                ContentTemplate="{DataTemplate local:Views.ExpenseView}"
+                Route="ExpenseView" />
+        </Tab>
+    </TabBar>
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    <ShellContent
-        Title="HomeScreenView"
-        ContentTemplate="{DataTemplate local:Views.HomeScreenView}"
-        Route="HomeScreenView" />
-    <ShellContent
-        Title="FamilyMembersView"
-        ContentTemplate="{DataTemplate local:Views.FamilyMembersView}"
-        Route="FamilyMembersView" />
-    <ShellContent   
-        Title="ExpenseView"
-        ContentTemplate="{DataTemplate local:Views.ExpenseView}"
-        Route="ExpenseView" />
-    
     
 
 </Shell>

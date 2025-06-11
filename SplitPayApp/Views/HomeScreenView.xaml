@@ -4,22 +4,22 @@
              x:Class="SplitPayApp.Views.HomeScreenView"
              xmlns:views="clr-namespace:SplitPayApp.Views"
              xmlns:viewModels="clr-namespace:SplitPayApp.ViewModels"
-             Title="{Binding HouseholdName}">
+             Title="SplitPay">
 
-       <!-- Home Tab -->
-      <ContentPage Title="Members" >
+    <!-- Family Members Tab -->
+    <ContentPage Title="Family Members" IconImageSource="person.png">
         <ContentPage.BindingContext>
             <viewModels:FamilyMemberViewModel />
         </ContentPage.BindingContext>
         <views:FamilyMembersView />
-     </ContentPage>
+    </ContentPage>
 
     <!-- Expenses Tab -->
-     <ContentPage Title="Expenses" >
+    <ContentPage Title="Expenses" IconImageSource="receipt.png">
         <ContentPage.BindingContext>
             <viewModels:ExpenseViewModel />
         </ContentPage.BindingContext>
         <views:ExpenseView />
-      </ContentPage>
+    </ContentPage>
    
 </TabbedPage>
