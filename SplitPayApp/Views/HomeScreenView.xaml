@@ -7,7 +7,7 @@
              Title="SplitPay">
 
     <!-- Family Members Tab -->
-    <ContentPage Title="Family Members" IconImageSource="person.png">
+    <ContentPage Title="Family Members" IconImageSource="user.png">
         <ContentPage.BindingContext>
             <viewModels:FamilyMemberViewModel />
         </ContentPage.BindingContext>

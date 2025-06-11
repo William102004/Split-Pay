@@ -8,7 +8,7 @@
     Title="SplitPayApp">
 
  <TabBar>
-        <Tab Title="Family Members" Icon="person.png">
+        <Tab Title="Family Members" Icon="user.png" >
             <ShellContent
                 Title="Members"
                 ContentTemplate="{DataTemplate local:Views.FamilyMembersView}"
