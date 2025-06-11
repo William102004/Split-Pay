@@ -139,5 +139,12 @@ public class FamilyMemberViewModel : BaseViewModel
     public void refreshFamilyMembers()
     {
         NotifyPropertyChanged(nameof(FamilyMembers));
+        NotifyPropertyChanged(nameof(SelectedFamilyMember));
+        NotifyPropertyChanged(nameof(Name));
+        NotifyPropertyChanged(nameof(Email));
+        NotifyPropertyChanged(nameof(Phone));
+        NotifyPropertyChanged(nameof(Address));
+        NotifyPropertyChanged(nameof(Balance));
+        
     }
 }
