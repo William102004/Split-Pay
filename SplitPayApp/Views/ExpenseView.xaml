@@ -180,7 +180,7 @@
                     
                     <!-- Add Button -->
                     <Button Text="Add Expense"
-                            Command="{Binding AddExpenseCommand}"
+                            Clicked="AddExpenseClicked"
                             Style="{StaticResource PrimaryButtonStyle}"/>
                 </StackLayout>
             </Frame>
@@ -224,7 +224,7 @@
                                             </Grid>
                                             
                                             <!-- Expenses List -->
-                                            <CollectionView ItemsSource="{Binding Expenses}"
+                                            <CollectionView ItemsSource="{Binding expenses}"
                                                             SelectionMode="None">
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>

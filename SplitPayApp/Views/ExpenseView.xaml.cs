@@ -27,11 +27,8 @@ public partial class ExpenseView : ContentView
 		}
 	}
 
-	protected override void OnParentSet()
-	{
-		base.OnParentSet();
-		// Refresh data when the view appears
-		(BindingContext as ExpenseViewModel)?.RefreshExpenses();
-		(BindingContext as ExpenseViewModel)?.NotifyPropertyChanged(nameof(ExpenseViewModel.FamilyMembers));
-	}
+	public void RefreshView()
+    {
+        (BindingContext as ExpenseViewModel)?.RefreshExpenses();
+    }
 }
