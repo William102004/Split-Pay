@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SplitPayApp.Views.FamilyMembersView"   
-
-             >
+             x:Class="SplitPayApp.Views.FamilyMembersView">
     <ScrollView>
         <StackLayout Padding="20" Spacing="20">
 
@@ -13,10 +11,14 @@
                 CornerRadius="10"
                 Padding="15">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Balance" FontSize="24" VerticalOptions="Center"/>
-                    <Label Text="{Binding HouseholdBalance,StringFormat=Empty'Total Balance: ${0:F2}'}"
+                    <Label Text="Total Household Balance:" 
+                           FontSize="18" 
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding HouseholdBalance, StringFormat='${0:F2}'}"
                         FontSize="18"
                         FontAttributes="Bold"
+                        TextColor="Green"
                         VerticalOptions="Center"/>          
                 </StackLayout>
             </Frame>
@@ -29,21 +31,21 @@
                         FontAttributes="Bold"
                         />
                     <Entry Placeholder="Name"
-                        Text="{Binding FamilyMember.Name}"
+                        Text="{Binding Name}"
                         />
                     <Entry Placeholder="Email"
-                        Text="{Binding FamilyMember.Email}"
+                        Text="{Binding Email}"
                         Keyboard="Email"
                         />
                     <Entry Placeholder="Phone"
-                        Text="{Binding FamilyMember.Phone}"
+                        Text="{Binding Phone}"
                         Keyboard="Telephone"
                         />
                     <Entry Placeholder="Address"
-                        Text="{Binding FamilyMember.Address}"
+                        Text="{Binding Address}"
                         />
                     <Entry Placeholder="Initial Balance"
-                        Text="{Binding FamilyMember.Balance}"
+                        Text="{Binding Balance}"
                         Keyboard="Numeric"
                         />
                     
@@ -65,7 +67,7 @@
                     <Picker Title="Select Member"
                         ItemsSource="{Binding FamilyMembers}"
                         ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding SelectedMember}"/>
+                        SelectedItem="{Binding SelectedFamilyMember}"/>
                     <Entry Placeholder="New Balance"
                         Text="{Binding NewBalance}"
                         Keyboard="Numeric"/>
@@ -88,7 +90,7 @@
                     <CollectionView ItemsSource="{Binding FamilyMembers}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Padding="10" RowDefinitions="Auto, Auto,Auto,Auto,Auto">
+                                <Grid Padding="10" RowDefinitions="Auto">
                                     <Frame Grid.Row="0"
                                         BackgroundColor="LightGray"
                                         HasShadow="False"
@@ -99,11 +101,11 @@
                                                 <Label Text="{Binding Name}"
                                                     FontSize="18"
                                                     FontAttributes="Bold"/>
-                                                <Label Text="{Binding Email,StringFormat='Email: {0}'}"
+                                                <Label Text="{Binding email, StringFormat='Email: {0}'}"
                                                     FontSize="14"/>
-                                                <Label Text="{Binding Phone,StringFormat='Phone: {0}'}"
+                                                <Label Text="{Binding phone, StringFormat='Phone: {0}'}"
                                                     FontSize="14"/>
-                                                <Label Text="{Binding Address,StringFormat='Address: {0}'}"
+                                                <Label Text="{Binding address, StringFormat='Address: {0}'}"
                                                     FontSize="14"/>
                                             </StackLayout>
                                             <StackLayout Grid.Column="1" VerticalOptions="Center">
@@ -115,9 +117,10 @@
                                                 <Button Text="Remove"
                                                     Clicked="RemoveMemberButton_Clicked"
                                                     TextColor="White"
+                                                    BackgroundColor="Red"
                                                     CornerRadius="5"
-                                                    WidthRequest="40"
-                                                    HeightRequest="30" />
+                                                    WidthRequest="70"
+                                                    HeightRequest="35" />
                                             </StackLayout>                                          
                                         </Grid>
                                     </Frame>

@@ -10,31 +10,35 @@ namespace SplitPayApp.ViewModels;
 public class ExpenseViewModel : BaseViewModel
 {
     private ExpenseService ExpenseService = ExpenseService.Current;
+    private Expense? _selectedExpense;
+    private FamilyMember? _selectedFamilyMember;
 
-    private Expense? _SelectedExpense { get; set; }
-    private FamilyMember? _SelectedFamilyMember { get; set; }
     public Expense? SelectedExpense
     {
-        get
-        {
-            return _SelectedExpense;
-        }
+        get => _selectedExpense;
         set
         {
-            _SelectedExpense = value;
+            _selectedExpense = value;
             NotifyPropertyChanged();
+            // Notify all expense properties
+            NotifyPropertyChanged(nameof(Name));
+            NotifyPropertyChanged(nameof(Amount));
+            NotifyPropertyChanged(nameof(Month));
+            NotifyPropertyChanged(nameof(Year));
+            NotifyPropertyChanged(nameof(Day));
+            NotifyPropertyChanged(nameof(Category));
+            NotifyPropertyChanged(nameof(Description));
+            NotifyPropertyChanged(nameof(Recurring));
+            NotifyPropertyChanged(nameof(Frequency));
         }
     }
 
     public FamilyMember? SelectedFamilyMember
     {
-        get
-        {
-            return _SelectedFamilyMember;
-        }
+        get => _selectedFamilyMember;
         set
         {
-            _SelectedFamilyMember = value;
+            _selectedFamilyMember = value;
             NotifyPropertyChanged();
         }
     }
@@ -45,137 +49,132 @@ public class ExpenseViewModel : BaseViewModel
     {
         get
         {
-            return new ObservableCollection<FamilyMember?>(HouseHoldService.Current.Household.Where(m => m != null));
-
+            var members = HouseHoldService.Current.Household.Where(m => m != null).ToList();
+            return new ObservableCollection<FamilyMember?>(members);
         }
     }
+
     public string? Name
     {
-        get
-        {
-            return SelectedExpense?.name ?? string.Empty;
-        }
+        get => SelectedExpense?.name ?? string.Empty;
         set
         {
             if (SelectedExpense != null && SelectedExpense.name != value)
             {
                 SelectedExpense.name = value;
-
+                NotifyPropertyChanged();
             }
         }
     }
     
     public double Amount
     {
-        get
-        {
-            return SelectedExpense?.amount ?? 0.0;
-        }
+        get => SelectedExpense?.amount ?? 0.0;
         set
         {
             if (SelectedExpense != null && SelectedExpense.amount != value)
             {
                 SelectedExpense.amount = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public int Month
     {
-        get
-        {
-            return SelectedExpense?.month ?? DateTime.Now.Month;
-        }
+        get => SelectedExpense?.month ?? DateTime.Now.Month;
         set
         {
             if (SelectedExpense != null && SelectedExpense.month != value)
             {
                 SelectedExpense.month = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public int Year
     {
-        get
-        {
-            return SelectedExpense?.year ?? DateTime.Now.Year;
-        }
+        get => SelectedExpense?.year ?? DateTime.Now.Year;
         set
         {
             if (SelectedExpense != null && SelectedExpense.year != value)
             {
                 SelectedExpense.year = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public int Day
     {
-        get
-        {
-            return SelectedExpense?.Day ?? DateTime.Now.Day;
-        }
+        get => SelectedExpense?.Day ?? DateTime.Now.Day;
         set
         {
             if (SelectedExpense != null && SelectedExpense.Day != value)
             {
                 SelectedExpense.Day = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Category
     {
-        get
-        {
-            return SelectedExpense?.category ?? string.Empty;
-        }
+        get => SelectedExpense?.category ?? string.Empty;
         set
         {
             if (SelectedExpense != null && SelectedExpense.category != value)
             {
                 SelectedExpense.category = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Description
     {
-        get
-        {
-            return SelectedExpense?.description ?? string.Empty;
-        }
+        get => SelectedExpense?.description ?? string.Empty;
         set
         {
             if (SelectedExpense != null && SelectedExpense.description != value)
             {
                 SelectedExpense.description = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public bool Recurring
     {
-        get
-        {
-            return SelectedExpense?.Recurring ?? false;
-        }
+        get => SelectedExpense?.Recurring ?? false;
         set
         {
             if (SelectedExpense != null && SelectedExpense.Recurring != value)
             {
                 SelectedExpense.Recurring = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Frequency
     {
-        get
-        {
-            return SelectedExpense?.frequency ?? string.Empty;
-        }
+        get => SelectedExpense?.frequency ?? string.Empty;
         set
         {
             if (SelectedExpense != null && SelectedExpense.frequency != value)
             {
                 SelectedExpense.frequency = value;
+                NotifyPropertyChanged();
             }
         }
+    }
+
+    public ExpenseViewModel()
+    {
+        // Initialize with a new expense
+        SelectedExpense = new Expense();
     }
 
     public void RefreshExpenses()
@@ -186,31 +185,33 @@ public class ExpenseViewModel : BaseViewModel
 
     public void AddExpense()
     {
-        if (SelectedFamilyMember != null && !string.IsNullOrEmpty(Name) && Amount > 0)
+        if (SelectedFamilyMember != null && !string.IsNullOrWhiteSpace(Name) && Amount > 0)
         {
-            ExpenseService.AddExpense(SelectedFamilyMember.id, Name, Amount, Month, Year, Day, Category, Description, Recurring, Frequency);
+            ExpenseService.AddExpense(
+                SelectedFamilyMember.id, 
+                Name, 
+                Amount, 
+                Month, 
+                Year, 
+                Day, 
+                Category ?? string.Empty, 
+                Description ?? string.Empty, 
+                Recurring, 
+                Frequency ?? string.Empty);
+
+            // Clear the form by creating a new expense
+            SelectedExpense = new Expense();
+            SelectedFamilyMember = null;
+            RefreshExpenses();
         }
-
-        Name = string.Empty;
-        Amount = 0.0;
-        Month = DateTime.Now.Month;
-        Year = DateTime.Now.Year;
-        Day = DateTime.Now.Day;
-        Category = string.Empty;
-        Description = string.Empty;
-        Recurring = false;
-        Frequency = string.Empty;
-        SelectedExpense = null;
-
-        RefreshExpenses();
     }
 
-    public void RemoveExpense()
+    public void RemoveExpense(Expense? expense)
     {
-        ExpenseService.RemoveExpense(SelectedExpense?.id ?? 0);
-        RefreshExpenses();
+        if (expense?.id != null)
+        {
+            ExpenseService.RemoveExpense(expense.id.Value);
+            RefreshExpenses();
+        }
     }
-
-
-
-}   
+}

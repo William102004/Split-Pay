@@ -8,143 +8,158 @@ namespace SplitPayApp.ViewModels;
 
 public class FamilyMemberViewModel : BaseViewModel
 {
-
-    private FamilyMember? CachedFamilyMember { get; set; }
+    private FamilyMember? _familyMember;
+    private FamilyMember? _selectedFamilyMember;
     private HouseHoldService HouseHoldService = HouseHoldService.Current;
 
     public ObservableCollection<FamilyMember?> FamilyMembers
     {
         get
         {
-            var FamilyMembers = HouseHoldService.Household;
-            return new ObservableCollection<FamilyMember?>(FamilyMembers);
+            var familyMembers = HouseHoldService.Household.Where(m => m != null).ToList();
+            return new ObservableCollection<FamilyMember?>(familyMembers);
         }
     }
-    public FamilyMember? FamilyMember { get; set; }
 
-    public FamilyMember? SelectedFamilyMember { get; set; }
+    public FamilyMember? FamilyMember 
+    { 
+        get => _familyMember;
+        set
+        {
+            _familyMember = value;
+            NotifyPropertyChanged();
+            // Notify all related properties
+            NotifyPropertyChanged(nameof(Name));
+            NotifyPropertyChanged(nameof(Email));
+            NotifyPropertyChanged(nameof(Phone));
+            NotifyPropertyChanged(nameof(Address));
+            NotifyPropertyChanged(nameof(Balance));
+        }
+    }
+
+    public FamilyMember? SelectedFamilyMember 
+    { 
+        get => _selectedFamilyMember;
+        set
+        {
+            _selectedFamilyMember = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public double HouseholdBalance => HouseHoldService.Current.HouseholdBalance;
+
     public string? Name
     {
-        get
-        {
-            return FamilyMember?.Name ?? string.Empty;
-        }
+        get => FamilyMember?.Name ?? string.Empty;
         set
         {
             if (FamilyMember != null && FamilyMember.Name != value)
             {
                 FamilyMember.Name = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Email
     {
-        get
-        {
-            return FamilyMember?.email ?? string.Empty;
-        }
+        get => FamilyMember?.email ?? string.Empty;
         set
         {
             if (FamilyMember != null && FamilyMember.email != value)
             {
                 FamilyMember.email = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Phone
     {
-        get
-        {
-            return FamilyMember?.phone ?? string.Empty;
-        }
+        get => FamilyMember?.phone ?? string.Empty;
         set
         {
             if (FamilyMember != null && FamilyMember.phone != value)
             {
                 FamilyMember.phone = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public string? Address
     {
-        get
-        {
-            return FamilyMember?.address ?? string.Empty;
-        }
+        get => FamilyMember?.address ?? string.Empty;
         set
         {
             if (FamilyMember != null && FamilyMember.address != value)
             {
                 FamilyMember.address = value;
+                NotifyPropertyChanged();
             }
         }
     }
+
     public double Balance
     {
-        get
-        {
-            return FamilyMember?.Balance ?? 0.0;
-        }
+        get => FamilyMember?.Balance ?? 0.0;
         set
         {
             if (FamilyMember != null && FamilyMember.Balance != value)
             {
                 FamilyMember.Balance = value;
+                NotifyPropertyChanged();
             }
         }
     }
 
     public void AddFamilyMember()
     {
-        HouseHoldService.Current.AddFamilyMember(FamilyMember?.Name ?? string.Empty,
-            FamilyMember?.email ?? string.Empty,
-            FamilyMember?.phone ?? string.Empty,
-            FamilyMember?.address ?? string.Empty,
-            FamilyMember?.Balance ?? 0.0);
-        refreshFamilyMembers();
-      
+        if (FamilyMember != null && !string.IsNullOrWhiteSpace(FamilyMember.Name))
+        {
+            HouseHoldService.Current.AddFamilyMember(
+                FamilyMember.Name ?? string.Empty,
+                FamilyMember.email ?? string.Empty,
+                FamilyMember.phone ?? string.Empty,
+                FamilyMember.address ?? string.Empty,
+                FamilyMember.Balance ?? 0.0);
+
+            // Clear the form by creating a new FamilyMember instance
+            FamilyMember = new FamilyMember();
+            refreshFamilyMembers();
+        }
     }
+
     public FamilyMember? RemoveFamilyMember()
     {
-        var familyMember = HouseHoldService.RemoveFamilyMember(SelectedFamilyMember?.id ?? 0);
-        refreshFamilyMembers();
-        return familyMember;
+        if (SelectedFamilyMember != null)
+        {
+            var familyMember = HouseHoldService.RemoveFamilyMember(SelectedFamilyMember.id);
+            refreshFamilyMembers();
+            return familyMember;
+        }
+        return null;
     }
 
     public void UpdateMemberBalance(double newBalance)
     {
-        HouseHoldService.Current.UpdateMemberBalance(SelectedFamilyMember?.id ?? 0, newBalance);
         if (SelectedFamilyMember != null)
         {
+            HouseHoldService.Current.UpdateMemberBalance(SelectedFamilyMember.id, newBalance);
             SelectedFamilyMember.Balance = newBalance;
-            NotifyPropertyChanged(nameof(SelectedFamilyMember));
+            refreshFamilyMembers();
         }
     }
 
     public FamilyMemberViewModel()
     {
         FamilyMember = new FamilyMember();
-        CachedFamilyMember = null;
-    }
-
-    public FamilyMemberViewModel(FamilyMember familyMember)
-    {
-        FamilyMember = familyMember;
-        if (familyMember != null)
-        {
-            CachedFamilyMember = new FamilyMember(familyMember.id, familyMember.Name, familyMember.email, familyMember.phone, familyMember.address, familyMember.Balance ?? 0.0);
-        }
     }
 
     public void refreshFamilyMembers()
     {
         NotifyPropertyChanged(nameof(FamilyMembers));
-        NotifyPropertyChanged(nameof(SelectedFamilyMember));
-        NotifyPropertyChanged(nameof(Name));
-        NotifyPropertyChanged(nameof(Email));
-        NotifyPropertyChanged(nameof(Phone));
-        NotifyPropertyChanged(nameof(Address));
-        NotifyPropertyChanged(nameof(Balance));
-        
+        NotifyPropertyChanged(nameof(HouseholdBalance));
     }
 }
