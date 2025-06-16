@@ -175,8 +175,11 @@ public class FamilyMemberViewModel : BaseViewModel
     {
         NotifyPropertyChanged(nameof(FamilyMembers));
         NotifyPropertyChanged(nameof(HouseholdBalance));
-        NotifyPropertyChanged(nameof(SelectedFamilyMember));
+        SelectedFamilyMember = null;
+        newBalance = 0.0;
         NotifyPropertyChanged(nameof(newBalance));
+        NotifyPropertyChanged(nameof(SelectedFamilyMember));
+       
        
     }
 }

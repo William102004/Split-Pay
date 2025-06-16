@@ -27,8 +27,8 @@ public partial class FamilyMembersView : ContentView
     private void RemoveMemberButton_Clicked(object sender, EventArgs e)
     {
         //(BindingContext as FamilyMemberViewModel)?.RemoveFamilyMember();
-        (BindingContext as FamilyMemberViewModel)?.refreshFamilyMembers();
-        
+        (BindingContext as FamilyMemberViewModel)?.DoDelete();
+        (BindingContext as FamilyMemberViewModel)?.refreshFamilyMembers();  
     }
     
     
