@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Split_Pay_Libraries.Models;
 using Split_Pay_Libraries.Services;
 using Split_Play_Libraries.Services;
@@ -8,6 +9,16 @@ namespace SplitPayApp.ViewModels;
 
 public class FamilyMemberViewModel : BaseViewModel
 {
+
+    public ICommand? RemoveCommand { get; set; }
+    public void DoDelete()
+    {
+        HouseHoldService.Current.RemoveFamilyMember(FamilyMember?.id ?? 0);
+    }
+    void SetupCommands()
+    {
+        RemoveCommand = new Command(DoDelete);
+    }
     private FamilyMember? _familyMember;
     private FamilyMember? _selectedFamilyMember;
     private HouseHoldService HouseHoldService = HouseHoldService.Current;
@@ -155,6 +166,7 @@ public class FamilyMemberViewModel : BaseViewModel
     public FamilyMemberViewModel()
     {
         FamilyMember = new FamilyMember();
+        SetupCommands();
     }
 
     public void refreshFamilyMembers()

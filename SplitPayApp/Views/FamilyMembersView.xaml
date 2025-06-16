@@ -115,7 +115,9 @@
                                                     HorizontalOptions="End"
                                                     />
                                                 <Button Text="Remove"
+                                                    Command="{Binding RemoveCommand}"
                                                     Clicked="RemoveMemberButton_Clicked"
+
                                                     TextColor="White"
                                                     BackgroundColor="Red"
                                                     CornerRadius="5"
