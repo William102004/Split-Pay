@@ -69,7 +69,7 @@
                         ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding SelectedFamilyMember}"/>
                     <Entry Placeholder="New Balance"
-                        Text="{Binding NewBalance}"
+                        Text="{Binding newBalance}"
                         Keyboard="Numeric"/>
                     
                     <Button Text="Update Balance"
@@ -115,7 +115,9 @@
                                                     HorizontalOptions="End"
                                                     />
                                                 <Button Text="Remove"
+                                                    Command="{Binding RemoveCommand}"
                                                     Clicked="RemoveMemberButton_Clicked"
+
                                                     TextColor="White"
                                                     BackgroundColor="Red"
                                                     CornerRadius="5"

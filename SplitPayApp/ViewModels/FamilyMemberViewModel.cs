@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Split_Pay_Libraries.Models;
 using Split_Pay_Libraries.Services;
 using Split_Play_Libraries.Services;
@@ -8,9 +9,21 @@ namespace SplitPayApp.ViewModels;
 
 public class FamilyMemberViewModel : BaseViewModel
 {
+
+    public ICommand? RemoveCommand { get; set; }
+    public void DoDelete()
+    {
+        HouseHoldService.Current.RemoveFamilyMember(FamilyMember?.id ?? 0);
+    }
+    void SetupCommands()
+    {
+        RemoveCommand = new Command(DoDelete);
+    }
     private FamilyMember? _familyMember;
     private FamilyMember? _selectedFamilyMember;
     private HouseHoldService HouseHoldService = HouseHoldService.Current;
+
+    public double newBalance { get; set; }
 
     public ObservableCollection<FamilyMember?> FamilyMembers
     {
@@ -142,7 +155,7 @@ public class FamilyMemberViewModel : BaseViewModel
         return null;
     }
 
-    public void UpdateMemberBalance(double newBalance)
+    public void UpdateMemberBalance()
     {
         if (SelectedFamilyMember != null)
         {
@@ -155,11 +168,18 @@ public class FamilyMemberViewModel : BaseViewModel
     public FamilyMemberViewModel()
     {
         FamilyMember = new FamilyMember();
+        SetupCommands();
     }
 
     public void refreshFamilyMembers()
     {
         NotifyPropertyChanged(nameof(FamilyMembers));
         NotifyPropertyChanged(nameof(HouseholdBalance));
+        SelectedFamilyMember = null;
+        newBalance = 0.0;
+        NotifyPropertyChanged(nameof(newBalance));
+        NotifyPropertyChanged(nameof(SelectedFamilyMember));
+       
+       
     }
 }

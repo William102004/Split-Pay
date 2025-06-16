@@ -1,12 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
-using Split_Pay_Libraries.Services;
-using Split_Pay_Libraries.Models;
-using System.Collections;
-using System.Diagnostics;
-using System.Xml.Serialization;
-using Split_Play_Libraries.Models;
-using Split_Play_Libraries.Services;
+
 /*
 namespace SplitPay
 {

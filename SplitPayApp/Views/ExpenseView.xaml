@@ -1,161 +1,335 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SplitPayApp.Views.ExpenseView">
+             x:Class="SplitPayApp.Views.ExpenseView"
+            
+             BackgroundColor="#667eea">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- Styles for mobile optimization -->
+            <Style x:Key="HeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,10,0,20"/>
+            </Style>
+            
+            <Style x:Key="SectionTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="#333333"/>
+                <Setter Property="Margin" Value="0,0,0,15"/>
+            </Style>
+            
+            <Style x:Key="FieldLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="#555555"/>
+                <Setter Property="Margin" Value="0,0,0,5"/>
+            </Style>
+            
+            <Style x:Key="InputStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="0,0,0,15"/>
+            </Style>
+            
+            <Style x:Key="PickerStyle" TargetType="Picker">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="0,0,0,15"/>
+            </Style>
+            
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#4facfe"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+            </Style>
+            
+            <Style x:Key="DangerButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#ff6b6b"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="CornerRadius" Value="17"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
-            <!--Add Expense Section-->
-            <Frame BackgroundColor="LightGray"
-                HasShadow="False"
-                CornerRadius="10"
-                Padding="15">
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                   <Label Text="Add Expense" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
-                           
-                    <Picker Title="Select Member"
-                            ItemsSource="{Binding FamilyMembers}"
-                            SelectedItem="{Binding SelectedFamilyMember}"
-                            ItemDisplayBinding="{Binding Name}"
-                            />
-                    <Entry Placeholder="Expense Name"
-                           Text="{Binding Name}"
-                        />
-                    <Entry Placeholder="Amount"
-                           Text="{Binding Amount}"
-                           Keyboard="Numeric"
-                        />
-                    <Grid ColumnDefinitions="*, *,*">
-                        <Entry Grid.Column="0"
-                               Placeholder="Month"
-                               Text="{Binding Month}"
-                               Keyboard="Numeric"
-                               />
-                        <Entry Grid.Column="1"
-                                 Placeholder="Day"
-                                 Text="{Binding Day}"
-                                 Keyboard="Numeric"
-                                 />
-                        <Entry Grid.Column="2"
-                                Placeholder="Year"
-                                Text="{Binding Year}"
-                                Keyboard="Numeric"
-                                />
-                    </Grid>
-                    <Entry 
-                           Placeholder="Category"
-                           Text="{Binding Category}"
-                        />
-                    <Entry Placeholder="Description"
-                           Text="{Binding Description}"
-                        />
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding Recurring}" />
-                        <Label Text="Recurring Expense" VerticalOptions="Center"/>
-                    </StackLayout>
-                    
-                    <Entry Placeholder="Frequency(e.g., Monthly)"
-                           Text="{Binding Frequency}"
-                           IsVisible="{Binding Recurring}"
-                        />
-                    <Button Text="Add Expense"
-                            Clicked="AddExpenseClicked"
-                            BackgroundColor="LightBlue"
-                            TextColor="White"
-                            CornerRadius="10"/>           
-                </StackLayout>
-            </Frame>
-            <!--Expense List Section-->
+        <StackLayout Padding="15" Spacing="20">
+            
+            <!-- Header -->
+            <Label Text="Split Pay Expense Tracker" 
+                   Style="{StaticResource HeaderStyle}"/>
+            
+            <!-- Add Expense Section -->
             <Frame BackgroundColor="White"
                    HasShadow="True"
-                   CornerRadius="15"
+                   CornerRadius="20"
                    Padding="20">
+                
+                <StackLayout Spacing="10">
+                    <Label Text="Add New Expense" 
+                           Style="{StaticResource SectionTitleStyle}"/>
+                    
+                    <!-- Member Selection -->
+                    <StackLayout>
+                        <Label Text="Select Member" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Picker Title="Choose a member..."
+                                ItemsSource="{Binding FamilyMembers}"
+                                SelectedItem="{Binding SelectedFamilyMember}"
+                                ItemDisplayBinding="{Binding Name}"
+                                Style="{StaticResource PickerStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Expense Name -->
+                    <StackLayout>
+                        <Label Text="Expense Name" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Entry Placeholder="Enter expense name"
+                               Text="{Binding ExpenseName}"
+                               Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Amount -->
+                    <StackLayout>
+                        <Label Text="Amount" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Entry Placeholder="$0.00"
+                               Text="{Binding Amount}"
+                               Keyboard="Numeric"
+                               Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Date Fields -->
+                    <StackLayout>
+                        <Label Text="Date" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Grid ColumnDefinitions="*,*,*" 
+                              ColumnSpacing="10">
+                            <Entry Grid.Column="0"
+                                   Placeholder="MM"
+                                   Text="{Binding Month}"
+                                   Keyboard="Numeric"
+                                   MaxLength="2"
+                                   Style="{StaticResource InputStyle}"/>
+                            <Entry Grid.Column="1"
+                                   Placeholder="DD"
+                                   Text="{Binding Day}"
+                                   Keyboard="Numeric"
+                                   MaxLength="2"
+                                   Style="{StaticResource InputStyle}"/>
+                            <Entry Grid.Column="2"
+                                   Placeholder="YYYY"
+                                   Text="{Binding Year}"
+                                   Keyboard="Numeric"
+                                   MaxLength="4"
+                                   Style="{StaticResource InputStyle}"/>
+                        </Grid>
+                    </StackLayout>
+                    
+                    <!-- Category -->
+                    <StackLayout>
+                        <Label Text="Category" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Entry Placeholder="e.g., Food, Transportation"
+                               Text="{Binding Category}"
+                               Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Description -->
+                    <StackLayout>
+                        <Label Text="Description (Optional)" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Entry Placeholder="Optional description"
+                               Text="{Binding Description}"
+                               Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Recurring Expense -->
+                    <StackLayout Orientation="Horizontal" 
+                                 Spacing="10"
+                                 Margin="0,10,0,0">
+                        <CheckBox IsChecked="{Binding IsRecurring}" 
+                                  Scale="1.2"/>
+                        <Label Text="Recurring Expense" 
+                               VerticalOptions="Center"
+                               FontSize="16"/>
+                    </StackLayout>
+                    
+                    <!-- Frequency (conditionally visible) -->
+                    <StackLayout IsVisible="{Binding IsRecurring}">
+                        <Label Text="Frequency" 
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Entry Placeholder="e.g., Monthly, Weekly"
+                               Text="{Binding Frequency}"
+                               Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    
+                    <!-- Add Button -->
+                    <Button Text="Add Expense"
+                            Clicked="AddExpenseClicked"
+                            Style="{StaticResource PrimaryButtonStyle}"/>
+                </StackLayout>
+            </Frame>
+            
+            <!-- Expenses List Section -->
+            <Frame BackgroundColor="White"
+                   HasShadow="True"
+                   CornerRadius="20"
+                   Padding="20">
+                
                 <StackLayout Spacing="15">
                     <Label Text="Expenses by Member"
-                            FontSize="20"
-                            FontAttributes="Bold"/>
-                    <ListView ItemsSource="{Binding FamilyMembers}">
-                        <ListView.ItemTemplate>
+                           Style="{StaticResource SectionTitleStyle}"/>
+                    
+                    <!-- Members List -->
+                    <CollectionView ItemsSource="{Binding FamilyMembers}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <Frame BackgroundColor="LightGray"
+                                <Grid Margin="0,0,0,15">
+                                    <Frame BackgroundColor="#f8f9fa"
                                            HasShadow="False"
-                                           CornerRadius="10"
-                                             Padding="15"
-                                             Margin="5">
-                                             <StackLayout Spacing="10">
-                                                <Grid ColumnDefinitions="*,Auto">
-                                                    <Label Grid.Column="0"
-                                                              Text="{Binding Name}"
-                                                              FontSize="18"
-                                                              FontAttributes="Bold"/>
-                                                    <Label Grid.Column="1"
-                                                             Text="{Binding Balance, StringFormat='Balance: {0:C}'}"
-                                                            FontSize="16"
-                                                            FontAttributes="Bold" />
-                                                </Grid>
-                                                <ListView ItemsSource="{Binding Expenses}">
-                                                    <ListView.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <ViewCell>
-                                                                <Frame BackgroundColor="White"
-                                                                       HasShadow="False"
-                                                                       CornerRadius="8"
-                                                                       Padding="10"
-                                                                       Margin="2">
-                                                                    <Grid ColumnDefinitions="*,Auto,Auto">
-                                                                            <StackLayout Grid.Column="0">
-                                                                                <Label Text="{Binding Name}"
-                                                                                          FontSize="16"
-                                                                                          FontAttributes="Bold"/>
-                                                                                 <Label FontSize="12" >
-                                                                                    <Label.FormattedText>
-                                                                                        <FormattedString>
-                                                                                            <Span Text="{Binding Month}" />
-                                                                                            <Span Text=" / " />
-                                                                                            <Span Text="{Binding Day}" />
-                                                                                            <Span Text=" / " />
-                                                                                            <Span Text="{Binding Year}" />
-                                                                                            <Span Text=" . " />
-                                                                                            <Span Text="{Binding Category}" />
-                                                                                            <Span Text=" . " />
-                                                                                            <Span Text="{Binding Description}" />
-                        
-                                                                                        </FormattedString>
-                                                                                    </Label.FormattedText>
-                                                                                 </Label>
-                                                                            </StackLayout>
-                                                                            <Label Grid.Column="1"
-                                                                                   Text="{Binding Amount, StringFormat='Amount: {0:C}'}"
-                                                                                   FontSize="16"
-                                                                                   FontAttributes="Bold"/>
-                                                                            <Button Grid.Column="2"
-                                                                                    Text="Remove"
-                                                                                    Clicked="RemoveExpenseClicked"                                                                
-                                                                                    TextColor="White"
-                                                                                    BackgroundColor="Red"
-                                                                                    CornerRadius="5"
-                                                                                    WidthRequest="40"
-                                                                                    HeightRequest="30"
-                                                                                    FontAttributes="Bold"
-                                                                                    FontSize="12"
-                                                                                    VerticalOptions="Center"/>
-                                                                    </Grid>
-                                                                </Frame>
-                                                            </ViewCell>
-                                                        </DataTemplate>
-                                                    </ListView.ItemTemplate>
-                                                </ListView>
-                                             </StackLayout>
-                                             </Frame>
-                                </ViewCell>
+                                           CornerRadius="15"
+                                           Padding="15">
+                                        
+                                        <StackLayout Spacing="15">
+                                            <!-- Member Header -->
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Grid.Column="0"
+                                                       Text="{Binding Name}"
+                                                       FontSize="18"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#333333"
+                                                       VerticalOptions="Center"/>
+                                                <Label Grid.Column="1"
+                                                       Text="{Binding Balance, StringFormat='${0:F2}'}"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#4facfe"
+                                                       VerticalOptions="Center"/>
+                                            </Grid>
+                                            
+                                            <!-- Expenses List -->
+                                            <CollectionView ItemsSource="{Binding expenses}"
+                                                            SelectionMode="None">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Margin="0,0,0,10">
+                                                            <Frame BackgroundColor="White"
+                                                                   HasShadow="False"
+                                                                   CornerRadius="12"
+                                                                   Padding="15">
+                                                                
+                                                                <Grid RowDefinitions="Auto,Auto,Auto" 
+                                                                      ColumnDefinitions="*,Auto">
+                                                                    
+                                                                    <!-- Expense Name and Amount -->
+                                                                    <Label Grid.Row="0" 
+                                                                           Grid.Column="0"
+                                                                           Text="{Binding Name}"
+                                                                           FontSize="16"
+                                                                           FontAttributes="Bold"
+                                                                           TextColor="#333333"/>
+                                                                    <Label Grid.Row="0" 
+                                                                           Grid.Column="1"
+                                                                           Text="{Binding Amount, StringFormat='${0:F2}'}"
+                                                                           FontSize="16"
+                                                                           FontAttributes="Bold"
+                                                                           TextColor="#28a745"
+                                                                           HorizontalOptions="End"/>
+                                                                    
+                                                                    <!-- Date and Category -->
+                                                                    <Label Grid.Row="1" 
+                                                                           Grid.Column="0"
+                                                                           Grid.ColumnSpan="2"
+                                                                           FontSize="12"
+                                                                           TextColor="#666666"
+                                                                           Margin="0,5,0,5">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="{Binding Month}"/>
+                                                                                <Span Text="/"/>
+                                                                                <Span Text="{Binding Day}"/>
+                                                                                <Span Text="/"/>
+                                                                                <Span Text="{Binding Year}"/>
+                                                                                <Span Text=" • "/>
+                                                                                <Span Text="{Binding Category}"/>
+                                                                                <Span Text=" • "/>
+                                                                                <Span Text="{Binding Description}"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                    
+                                                                    <!-- Remove Button -->
+                                                                    <Button Grid.Row="2" 
+                                                                            Grid.Column="1"
+                                                                            Text="Remove"
+                                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveExpenseCommand}"
+                                                                            CommandParameter="{Binding .}"
+                                                                            Style="{StaticResource DangerButtonStyle}"
+                                                                            HorizontalOptions="End"/>
+                                                                </Grid>
+                                                            </Frame>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                                
+                                                <!-- Empty State -->
+                                                <CollectionView.EmptyView>
+                                                    <Label Text="No expenses yet"
+                                                           HorizontalOptions="Center"
+                                                           TextColor="#999999"
+                                                          
+                                                           Margin="0,10"/>
+                                                </CollectionView.EmptyView>
+                                            </CollectionView>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </CollectionView.ItemTemplate>
+                        
+                        <!-- Empty State for Members -->
+                        <CollectionView.EmptyView>
+                            <StackLayout HorizontalOptions="Center" 
+                                         VerticalOptions="Center"
+                                         Padding="20">
+                                <Label Text="💸"
+                                       FontSize="48"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="No family members added yet"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       TextColor="#666666"/>
+                                <Label Text="Add your first expense to get started!"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       TextColor="#999999"
+                                       Margin="0,5,0,0"/>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
                 </StackLayout>
-                 </Frame>   
-
-
-        </VerticalStackLayout>
+            </Frame>
+            
+            <!-- Bottom Spacing for iPhone -->
+            <BoxView HeightRequest="30" 
+                     BackgroundColor="Transparent"/>
+        </StackLayout>
     </ScrollView>
 </ContentView>

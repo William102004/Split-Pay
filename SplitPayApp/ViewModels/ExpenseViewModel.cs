@@ -1,17 +1,21 @@
 using System;
 using System.Collections.ObjectModel;
+using Microsoft.VisualBasic;
 using Split_Pay_Libraries.Models;
 using Split_Pay_Libraries.Services;
 using Split_Play_Libraries.Models;
 using Split_Play_Libraries.Services;
+using SplitPayApp.ViewModels;
 
 namespace SplitPayApp.ViewModels;
 
 public class ExpenseViewModel : BaseViewModel
 {
     private ExpenseService ExpenseService = ExpenseService.Current;
+   
+    private HouseHoldService HouseHoldService = HouseHoldService.Current;
     private Expense? _selectedExpense;
-    private FamilyMember? _selectedFamilyMember;
+    private FamilyMember? _selectedExpenseMember;
 
     public Expense? SelectedExpense
     {
@@ -33,12 +37,12 @@ public class ExpenseViewModel : BaseViewModel
         }
     }
 
-    public FamilyMember? SelectedFamilyMember
+    public FamilyMember? SelectedExpenseMember
     {
-        get => _selectedFamilyMember;
+        get => _selectedExpenseMember;
         set
         {
-            _selectedFamilyMember = value;
+            _selectedExpenseMember = value;
             NotifyPropertyChanged();
         }
     }
@@ -49,8 +53,7 @@ public class ExpenseViewModel : BaseViewModel
     {
         get
         {
-            var members = HouseHoldService.Current.Household.Where(m => m != null).ToList();
-            return new ObservableCollection<FamilyMember?>(members);
+            return new ObservableCollection<FamilyMember?>(HouseHoldService.Household);
         }
     }
 
@@ -185,10 +188,10 @@ public class ExpenseViewModel : BaseViewModel
 
     public void AddExpense()
     {
-        if (SelectedFamilyMember != null && !string.IsNullOrWhiteSpace(Name) && Amount > 0)
+        if (SelectedExpenseMember != null && !string.IsNullOrWhiteSpace(Name) && Amount > 0)
         {
             ExpenseService.AddExpense(
-                SelectedFamilyMember.id, 
+                SelectedExpenseMember.id, 
                 Name, 
                 Amount, 
                 Month, 
@@ -201,7 +204,7 @@ public class ExpenseViewModel : BaseViewModel
 
             // Clear the form by creating a new expense
             SelectedExpense = new Expense();
-            SelectedFamilyMember = null;
+            SelectedExpenseMember = null;
             RefreshExpenses();
         }
     }
