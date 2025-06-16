@@ -23,6 +23,8 @@ public class FamilyMemberViewModel : BaseViewModel
     private FamilyMember? _selectedFamilyMember;
     private HouseHoldService HouseHoldService = HouseHoldService.Current;
 
+    public double newBalance { get; set; }
+
     public ObservableCollection<FamilyMember?> FamilyMembers
     {
         get
@@ -153,7 +155,7 @@ public class FamilyMemberViewModel : BaseViewModel
         return null;
     }
 
-    public void UpdateMemberBalance(double newBalance)
+    public void UpdateMemberBalance()
     {
         if (SelectedFamilyMember != null)
         {
@@ -173,5 +175,8 @@ public class FamilyMemberViewModel : BaseViewModel
     {
         NotifyPropertyChanged(nameof(FamilyMembers));
         NotifyPropertyChanged(nameof(HouseholdBalance));
+        NotifyPropertyChanged(nameof(SelectedFamilyMember));
+        NotifyPropertyChanged(nameof(newBalance));
+       
     }
 }
