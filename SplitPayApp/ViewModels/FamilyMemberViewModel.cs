@@ -10,15 +10,7 @@ namespace SplitPayApp.ViewModels;
 public class FamilyMemberViewModel : BaseViewModel
 {
 
-    public ICommand? RemoveCommand { get; set; }
-    public void DoDelete()
-    {
-        HouseHoldService.Current.RemoveFamilyMember(FamilyMember?.id ?? 0);
-    }
-    void SetupCommands()
-    {
-        RemoveCommand = new Command(DoDelete);
-    }
+   
     private FamilyMember? _familyMember;
     private FamilyMember? _selectedFamilyMember;
     private HouseHoldService HouseHoldService = HouseHoldService.Current;
@@ -165,10 +157,19 @@ public class FamilyMemberViewModel : BaseViewModel
         }
     }
 
+    public void DoDelete(FamilyMember? memberToDelete)
+    {
+        if (memberToDelete?.id != null)
+        {
+            HouseHoldService.Current.RemoveFamilyMember(memberToDelete.id);
+            refreshFamilyMembers();
+        }
+    }
+
     public FamilyMemberViewModel()
     {
         FamilyMember = new FamilyMember();
-        SetupCommands();
+
     }
 
     public void refreshFamilyMembers()
