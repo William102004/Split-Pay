@@ -89,7 +89,7 @@
                                Style="{StaticResource FieldLabelStyle}"/>
                         <Picker Title="Choose a member..."
                                 ItemsSource="{Binding FamilyMembers}"
-                                SelectedItem="{Binding SelectedFamilyMember}"
+                                SelectedItem="{Binding SelectedExpenseMember}"
                                 ItemDisplayBinding="{Binding Name}"
                                 Style="{StaticResource PickerStyle}"/>
                     </StackLayout>

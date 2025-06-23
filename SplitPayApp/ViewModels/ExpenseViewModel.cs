@@ -188,7 +188,7 @@ public class ExpenseViewModel : BaseViewModel
 
     public void AddExpense()
     {
-        if (SelectedExpenseMember != null && !string.IsNullOrWhiteSpace(Name) && Amount > 0)
+        if (SelectedExpenseMember != null  && Amount > 0)
         {
             ExpenseService.AddExpense(
                 SelectedExpenseMember.id, 
