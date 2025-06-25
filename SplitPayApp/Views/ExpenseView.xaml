@@ -99,7 +99,7 @@
                         <Label Text="Expense Name" 
                                Style="{StaticResource FieldLabelStyle}"/>
                         <Entry Placeholder="Enter expense name"
-                               Text="{Binding ExpenseName}"
+                               Text="{Binding Name}"
                                Style="{StaticResource InputStyle}"/>
                     </StackLayout>
                     
