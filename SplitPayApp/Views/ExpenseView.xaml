@@ -89,7 +89,7 @@
                                Style="{StaticResource FieldLabelStyle}"/>
                         <Picker Title="Choose a member..."
                                 ItemsSource="{Binding FamilyMembers}"
-                                SelectedItem="{Binding SelectedFamilyMember}"
+                                SelectedItem="{Binding SelectedExpenseMember}"
                                 ItemDisplayBinding="{Binding Name}"
                                 Style="{StaticResource PickerStyle}"/>
                     </StackLayout>
@@ -226,67 +226,49 @@
                                             <!-- Expenses List -->
                                             <CollectionView ItemsSource="{Binding expenses}"
                                                             SelectionMode="None">
-                                                <CollectionView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid Margin="0,0,0,10">
-                                                            <Frame BackgroundColor="White"
-                                                                   HasShadow="False"
-                                                                   CornerRadius="12"
-                                                                   Padding="15">
-                                                                
-                                                                <Grid RowDefinitions="Auto,Auto,Auto" 
-                                                                      ColumnDefinitions="*,Auto">
-                                                                    
-                                                                    <!-- Expense Name and Amount -->
-                                                                    <Label Grid.Row="0" 
-                                                                           Grid.Column="0"
-                                                                           Text="{Binding Name}"
-                                                                           FontSize="16"
-                                                                           FontAttributes="Bold"
-                                                                           TextColor="#333333"/>
-                                                                    <Label Grid.Row="0" 
-                                                                           Grid.Column="1"
-                                                                           Text="{Binding Amount, StringFormat='${0:F2}'}"
-                                                                           FontSize="16"
-                                                                           FontAttributes="Bold"
-                                                                           TextColor="#28a745"
-                                                                           HorizontalOptions="End"/>
-                                                                    
-                                                                    <!-- Date and Category -->
-                                                                    <Label Grid.Row="1" 
-                                                                           Grid.Column="0"
-                                                                           Grid.ColumnSpan="2"
-                                                                           FontSize="12"
-                                                                           TextColor="#666666"
-                                                                           Margin="0,5,0,5">
-                                                                        <Label.FormattedText>
-                                                                            <FormattedString>
-                                                                                <Span Text="{Binding Month}"/>
-                                                                                <Span Text="/"/>
-                                                                                <Span Text="{Binding Day}"/>
-                                                                                <Span Text="/"/>
-                                                                                <Span Text="{Binding Year}"/>
-                                                                                <Span Text=" • "/>
-                                                                                <Span Text="{Binding Category}"/>
-                                                                                <Span Text=" • "/>
-                                                                                <Span Text="{Binding Description}"/>
-                                                                            </FormattedString>
-                                                                        </Label.FormattedText>
-                                                                    </Label>
-                                                                    
-                                                                    <!-- Remove Button -->
-                                                                    <Button Grid.Row="2" 
-                                                                            Grid.Column="1"
-                                                                            Text="Remove"
-                                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveExpenseCommand}"
-                                                                            CommandParameter="{Binding .}"
-                                                                            Style="{StaticResource DangerButtonStyle}"
-                                                                            HorizontalOptions="End"/>
-                                                                </Grid>
-                                                            </Frame>
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </CollectionView.ItemTemplate>
+                                            <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                            <Grid Margin="0,0,0,10">
+                                            <Frame BackgroundColor="White"
+                                                     HasShadow="False"
+                                                     CornerRadius="12"
+                                                     Padding="15">
+                    
+                                                <Grid  
+                                                      ColumnDefinitions="*,Auto">
+                        
+                                            <!-- Expense Name and Amount -->
+                                                <Label 
+                                                        Grid.Column="0"
+                                                        Text="{Binding ExpenseName}"
+                                                        FontSize="16"
+                                                        FontAttributes="Bold"
+                                                        TextColor="#333333" />
+                        
+                                                <Label  
+                                                       Grid.Column="1"
+                                                       Text="{Binding Amount, StringFormat='${0:F2}'}"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#28a745"
+                                                       HorizontalOptions="End" />
+                        
+                                       
+                        
+                                        <!-- Remove Button -->
+                                        <Button 
+                                                Grid.Column="1"
+                                                Text="Remove"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveExpenseCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Style="{StaticResource DangerButtonStyle}"
+                                                HorizontalOptions="End" />
+                        
+                                </Grid>
+                             </Frame>
+                        </Grid>
+                    </DataTemplate>
+                 </CollectionView.ItemTemplate>
                                                 
                                                 <!-- Empty State -->
                                                 <CollectionView.EmptyView>

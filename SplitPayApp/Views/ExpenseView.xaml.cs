@@ -3,7 +3,7 @@ namespace SplitPayApp.Views;
 using SplitPayApp.ViewModels;
 using Split_Play_Libraries.Models;
 using Split_Pay_Libraries.Models;
-
+using SplitPayApp.Views;
 public partial class ExpenseView : ContentView
 {
 	public ExpenseView()
@@ -16,6 +16,9 @@ public partial class ExpenseView : ContentView
 	private void AddExpenseClicked(object sender, EventArgs e)
 	{
 		(BindingContext as ExpenseViewModel)?.AddExpense();
+		(BindingContext as ExpenseViewModel)?.RefreshExpenses();
+		(BindingContext as FamilyMemberViewModel)?.refreshFamilyMembers();
+
 	}
 
 	private void RemoveExpenseClicked(object sender, EventArgs e)
