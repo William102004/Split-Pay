@@ -25,7 +25,7 @@ public class ExpenseViewModel : BaseViewModel
             _selectedExpense = value;
             NotifyPropertyChanged();
             // Notify all expense properties
-            NotifyPropertyChanged(nameof(Name));
+            NotifyPropertyChanged(nameof(ExpenseName));
             NotifyPropertyChanged(nameof(Amount));
             NotifyPropertyChanged(nameof(Month));
             NotifyPropertyChanged(nameof(Year));
@@ -57,7 +57,7 @@ public class ExpenseViewModel : BaseViewModel
         }
     }
 
-    public string? Name
+    public string? ExpenseName
     {
         get => SelectedExpense?.name ?? string.Empty;
         set
@@ -192,7 +192,7 @@ public class ExpenseViewModel : BaseViewModel
         {
             ExpenseService.AddExpense(
                 SelectedExpenseMember.id, 
-                Name, 
+                ExpenseName, 
                 Amount, 
                 Month, 
                 Year, 
