@@ -225,10 +225,10 @@
                                             
                                             <!-- Expenses List -->
                                             <CollectionView ItemsSource="{Binding expenses}"
-                                                            SelectionMode="None">
+                                                            >
                                             <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                            <Grid Margin="0,0,0,10">
+                                            <Grid Margin="0,0,0,10" RowDefinitions="Auto">
                                             <Frame BackgroundColor="White"
                                                      HasShadow="False"
                                                      CornerRadius="12"
@@ -238,32 +238,58 @@
                                                       ColumnDefinitions="*,Auto">
                         
                                             <!-- Expense Name and Amount -->
-                                                <Label 
-                                                        Grid.Column="0"
+                                                <StackLayout Grid.Column="0" >    
+                                                <Label
                                                         Text="{Binding ExpenseName}"
                                                         FontSize="16"
                                                         FontAttributes="Bold"
                                                         TextColor="#333333" />
                         
                                                 <Label  
-                                                       Grid.Column="1"
+                                                       
                                                        Text="{Binding Amount, StringFormat='${0:F2}'}"
                                                        FontSize="16"
                                                        FontAttributes="Bold"
                                                        TextColor="#28a745"
                                                        HorizontalOptions="End" />
-                        
-                                       
-                        
+                                                <Label
+                                                      Text="{Binding Category}"
+                                                      FontSize="14" 
+                                                      TextColor="#666666" />
+                                                <Label 
+                                                      Text="{Binding Description}"
+                                                    FontSize="14"
+                                                     TextColor="#999999" />
+                                                <Label
+                                                    Text="{Binding Month}"
+                                                    FontSize="14"
+                                                    TextColor="#999999"
+                                                    />
+                                                <Label
+                                                    Text="/{Binding Day}"
+                                                    FontSize="14"
+                                                    TextColor="#999999"
+                                                    />
+                                                <Label
+                                                    Text="/{Binding Year}"
+                                                    FontSize="14"
+                                                    TextColor="#999999"
+                                                    />
+                                                <Label
+                                                    Text="{Binding Frequency}"
+                                                    FontSize="14"
+                                                    TextColor="#999999"
+                                                    IsVisible="{Binding IsRecurring}" />
+
                                         <!-- Remove Button -->
                                         <Button 
-                                                Grid.Column="1"
+                                                
                                                 Text="Remove"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveExpenseCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Style="{StaticResource DangerButtonStyle}"
                                                 HorizontalOptions="End" />
-                        
+                                         </StackLayout>
                                 </Grid>
                              </Frame>
                         </Grid>
