@@ -184,7 +184,7 @@ public class ExpenseViewModel : BaseViewModel
     {
         NotifyPropertyChanged(nameof(FamilyMemberViewModel));
         NotifyPropertyChanged(nameof(FamilyMembers));
-        NotifyPropertyChanged(nameof(HouseholdBalance));
+       
     }
 
     public void AddExpense()
@@ -207,6 +207,7 @@ public class ExpenseViewModel : BaseViewModel
             SelectedExpense = new Expense();
             SelectedExpenseMember = null;
             RefreshExpenses();
+            NotifyPropertyChanged(nameof(FamilyMembers));
             
         }
     }
