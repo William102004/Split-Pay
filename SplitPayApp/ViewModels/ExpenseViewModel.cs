@@ -182,7 +182,7 @@ public class ExpenseViewModel : BaseViewModel
 
     public void RefreshExpenses()
     {
-        NotifyPropertyChanged(nameof(FamilyMemberViewModel));
+        NotifyPropertyChanged(nameof(FamilyMembers));
         NotifyPropertyChanged(nameof(FamilyMembers));
        
     }

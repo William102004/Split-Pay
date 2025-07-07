@@ -1,3 +1,5 @@
+using SplitPayApp.ViewModels;
+
 namespace SplitPayApp.Views;
 
 public partial class HomeScreenView : TabbedPage
@@ -5,33 +7,36 @@ public partial class HomeScreenView : TabbedPage
     public HomeScreenView()
     {
         InitializeComponent();
-        
+
         // Subscribe to page changes
         this.CurrentPageChanged += OnCurrentPageChanged;
     }
 
     private void OnCurrentPageChanged(object? sender, EventArgs e)
+{
+        // Ensure the current page is not null before accessing its properties
+        if (CurrentPage == null)
+            return;
+    // Refresh both views when switching tabs to ensure data is current
+    if (CurrentPage?.Title == "Expenses")
     {
-        // Refresh expense view when expenses tab is selected
-        if (CurrentPage?.Title == "Expenses")
+        if (CurrentPage is ContentPage contentPage && contentPage.Content is ExpenseView expenseView)
         {
-            // Find the ExpenseView in the current page's content
-            if (CurrentPage is ContentPage contentPage && contentPage.Content is ExpenseView expenseView)
-            {
-                expenseView.RefreshView();
-            }
+            expenseView.RefreshView();
         }
-        
-        // Refresh family members view when family members tab is selected
-        if (CurrentPage?.Title == "Family Members")
+    }
+    
+    if (CurrentPage?.Title == "Family Members")
+    {
+        if (CurrentPage is ContentPage familyContentPage && familyContentPage.Content is FamilyMembersView familyView)
         {
-            // Find the FamilyMembersView and refresh it
-            if (CurrentPage is ContentPage familyContentPage && familyContentPage.Content is FamilyMembersView familyView)
+            if (familyView.BindingContext is FamilyMemberViewModel familyViewModel)
             {
-                // You can add a similar refresh method to FamilyMembersView if needed
+                familyViewModel.refreshFamilyMembers();
             }
         }
     }
+}
 
     protected override void OnDisappearing()
     {
@@ -39,4 +44,6 @@ public partial class HomeScreenView : TabbedPage
         // Unsubscribe to prevent memory leaks
         this.CurrentPageChanged -= OnCurrentPageChanged;
     }
+ 
+
 }
