@@ -10,6 +10,7 @@ public partial class ExpenseView : ContentView
 	{
 		InitializeComponent();
 		BindingContext = new ExpenseViewModel();
+		
 
 	}
 
@@ -17,7 +18,7 @@ public partial class ExpenseView : ContentView
 	{
 		(BindingContext as ExpenseViewModel)?.AddExpense();
 		(BindingContext as ExpenseViewModel)?.RefreshExpenses();
-		(BindingContext as FamilyMemberViewModel)?.refreshFamilyMembers();
+
 
 	}
 
