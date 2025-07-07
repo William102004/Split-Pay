@@ -228,54 +228,63 @@
                                                             >
                                             <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                            <Grid Margin="0,0,0,10" RowDefinitions="Auto">
+                                            <Grid Margin="0,0,0,10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                                             <Frame BackgroundColor="White"
                                                      HasShadow="False"
                                                      CornerRadius="12"
                                                      Padding="15">
                     
                                                 <Grid  
-                                                      ColumnDefinitions="*,Auto">
+                                                      ColumnDefinitions="Auto,Auto,Auto">
                         
                                             <!-- Expense Name and Amount -->
-                                                <StackLayout Grid.Column="0" >    
-                                                <Label
+                                                <StackLayout >    
+                                                <Label Grid.Row="0" Grid.Column="0"
                                                         Text="{Binding ExpenseName}"
                                                         FontSize="16"
                                                         FontAttributes="Bold"
                                                         TextColor="#333333" />
                         
-                                                <Label  
+                                                <Label  Grid.Row="1" Grid.Column="0"
                                                        
                                                        Text="{Binding Amount, StringFormat='${0:F2}'}"
                                                        FontSize="16"
                                                        FontAttributes="Bold"
                                                        TextColor="#28a745"
                                                        HorizontalOptions="End" />
-                                                <Label
+                                                <Label Grid.Row="2" Grid.Column="0"
                                                       Text="{Binding Category}"
                                                       FontSize="14" 
                                                       TextColor="#666666" />
-                                                <Label 
+                                                <Label Grid.Row="3" Grid.Column="0"
                                                       Text="{Binding Description}"
                                                     FontSize="14"
                                                      TextColor="#999999" />
-                                                <Label
+                                                
+                                            
+                                                <Label Grid.Row="4" Grid.Column="0"
                                                     Text="{Binding Month}"
                                                     FontSize="14"
                                                     TextColor="#999999"
                                                     />
-                                                <Label
-                                                    Text="/{Binding Day}"
+                                                <Label Grid.Row="4" Grid.Column="1"
+                                                    Text="/"
+                                                    />
+                                                <Label Grid.Row="4" Grid.Column="2"
+                                                    Text="{Binding Day}"
                                                     FontSize="14"
                                                     TextColor="#999999"
                                                     />
-                                                <Label
-                                                    Text="/{Binding Year}"
+
+                                                <Label Grid.Row="4" Grid.Column="3"
+                                                    Text="/"
+                                                    />
+                                                <Label Grid.Row="4" Grid.Column="4"
+                                                    Text="{Binding Year}"
                                                     FontSize="14"
                                                     TextColor="#999999"
                                                     />
-                                                <Label
+                                                <Label Grid.Row="5" Grid.Column="0"
                                                     Text="{Binding Frequency}"
                                                     FontSize="14"
                                                     TextColor="#999999"
