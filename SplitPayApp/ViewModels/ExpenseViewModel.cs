@@ -182,30 +182,32 @@ public class ExpenseViewModel : BaseViewModel
 
     public void RefreshExpenses()
     {
+        NotifyPropertyChanged(nameof(FamilyMemberViewModel));
         NotifyPropertyChanged(nameof(FamilyMembers));
         NotifyPropertyChanged(nameof(HouseholdBalance));
     }
 
     public void AddExpense()
     {
-        if (SelectedExpenseMember != null  && Amount > 0)
+        if (SelectedExpenseMember != null && Amount > 0)
         {
             ExpenseService.AddExpense(
-                SelectedExpenseMember.id, 
-                ExpenseName, 
-                Amount, 
-                Month, 
-                Year, 
-                Day, 
-                Category ?? string.Empty, 
-                Description ?? string.Empty, 
-                Recurring, 
+                SelectedExpenseMember.id,
+                ExpenseName,
+                Amount,
+                Month,
+                Year,
+                Day,
+                Category ?? string.Empty,
+                Description ?? string.Empty,
+                Recurring,
                 Frequency ?? string.Empty);
 
             // Clear the form by creating a new expense
             SelectedExpense = new Expense();
             SelectedExpenseMember = null;
             RefreshExpenses();
+            
         }
     }
 

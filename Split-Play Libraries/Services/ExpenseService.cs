@@ -54,14 +54,15 @@ public class ExpenseService
         FamilyMember? familyMember = HouseHoldService.Current.Household.FirstOrDefault(f => f?.id == familyMemberId);
         if (familyMember != null)
         {
-           
+
             if (familyMember.expenses == null)
             {
                 familyMember.expenses = new List<Expense?>();
             }
-            
+
             familyMember.expenses.Add(expense);
             familyMember.Balance = Math.Round((double)(familyMember.Balance ?? 0) - Amount, 2);
+            HouseHoldService.Current.HouseholdBalance = Math.Round(HouseHoldService.Current.HouseholdBalance - Amount, 2);
         }
         return expense;
     }
