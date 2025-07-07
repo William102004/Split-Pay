@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using Microsoft.VisualBasic;
 using Split_Pay_Libraries.Models;
 using Split_Pay_Libraries.Services;
+using SplitPayApp.ViewModels;
 using Split_Play_Libraries.Models;
 using Split_Play_Libraries.Services;
-using SplitPayApp.ViewModels;
 
 namespace SplitPayApp.ViewModels;
 
