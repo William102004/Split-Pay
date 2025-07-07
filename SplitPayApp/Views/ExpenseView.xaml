@@ -2,7 +2,6 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SplitPayApp.Views.ExpenseView"
-            
              BackgroundColor="#667eea">
     
     <ContentView.Resources>
@@ -72,6 +71,24 @@
             <!-- Header -->
             <Label Text="Split Pay Expense Tracker" 
                    Style="{StaticResource HeaderStyle}"/>
+            
+            <!-- Household Balance Display -->
+            <Frame BackgroundColor="White"
+                   HasShadow="True"
+                   CornerRadius="20"
+                   Padding="20">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="Total Household Balance:" 
+                           FontSize="18" 
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding HouseholdBalance, StringFormat='${0:F2}'}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="Green"
+                           VerticalOptions="Center"/>          
+                </StackLayout>
+            </Frame>
             
             <!-- Add Expense Section -->
             <Frame BackgroundColor="White"
@@ -162,7 +179,7 @@
                     <StackLayout Orientation="Horizontal" 
                                  Spacing="10"
                                  Margin="0,10,0,0">
-                        <CheckBox IsChecked="{Binding IsRecurring}" 
+                        <CheckBox IsChecked="{Binding Recurring}" 
                                   Scale="1.2"/>
                         <Label Text="Recurring Expense" 
                                VerticalOptions="Center"
@@ -170,7 +187,7 @@
                     </StackLayout>
                     
                     <!-- Frequency (conditionally visible) -->
-                    <StackLayout IsVisible="{Binding IsRecurring}">
+                    <StackLayout IsVisible="{Binding Recurring}">
                         <Label Text="Frequency" 
                                Style="{StaticResource FieldLabelStyle}"/>
                         <Entry Placeholder="e.g., Monthly, Weekly"
@@ -224,93 +241,87 @@
                                             </Grid>
                                             
                                             <!-- Expenses List -->
-                                            <CollectionView ItemsSource="{Binding expenses}"
-                                                            >
-                                            <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                            <Grid Margin="0,0,0,10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                                            <Frame BackgroundColor="White"
-                                                     HasShadow="False"
-                                                     CornerRadius="12"
-                                                     Padding="15">
-                    
-                                                <Grid  
-                                                      ColumnDefinitions="Auto,Auto,Auto">
-                        
-                                            <!-- Expense Name and Amount -->
-                                                <StackLayout >    
-                                                <Label Grid.Row="0" Grid.Column="0"
-                                                        Text="{Binding ExpenseName}"
-                                                        FontSize="16"
-                                                        FontAttributes="Bold"
-                                                        TextColor="#333333" />
-                        
-                                                <Label  Grid.Row="1" Grid.Column="0"
-                                                       
-                                                       Text="{Binding Amount, StringFormat='${0:F2}'}"
-                                                       FontSize="16"
-                                                       FontAttributes="Bold"
-                                                       TextColor="#28a745"
-                                                       HorizontalOptions="End" />
-                                                <Label Grid.Row="2" Grid.Column="0"
-                                                      Text="{Binding Category}"
-                                                      FontSize="14" 
-                                                      TextColor="#666666" />
-                                                <Label Grid.Row="3" Grid.Column="0"
-                                                      Text="{Binding Description}"
-                                                    FontSize="14"
-                                                     TextColor="#999999" />
-                                                
-                                            
-                                                <Label Grid.Row="4" Grid.Column="0"
-                                                    Text="{Binding Month}"
-                                                    FontSize="14"
-                                                    TextColor="#999999"
-                                                    />
-                                                <Label Grid.Row="4" Grid.Column="1"
-                                                    Text="/"
-                                                    />
-                                                <Label Grid.Row="4" Grid.Column="2"
-                                                    Text="{Binding Day}"
-                                                    FontSize="14"
-                                                    TextColor="#999999"
-                                                    />
-
-                                                <Label Grid.Row="4" Grid.Column="3"
-                                                    Text="/"
-                                                    />
-                                                <Label Grid.Row="4" Grid.Column="4"
-                                                    Text="{Binding Year}"
-                                                    FontSize="14"
-                                                    TextColor="#999999"
-                                                    />
-                                                <Label Grid.Row="5" Grid.Column="0"
-                                                    Text="{Binding Frequency}"
-                                                    FontSize="14"
-                                                    TextColor="#999999"
-                                                    IsVisible="{Binding IsRecurring}" />
-
-                                        <!-- Remove Button -->
-                                        <Button 
-                                                
-                                                Text="Remove"
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveExpenseCommand}"
-                                                CommandParameter="{Binding .}"
-                                                Style="{StaticResource DangerButtonStyle}"
-                                                HorizontalOptions="End" />
-                                         </StackLayout>
-                                </Grid>
-                             </Frame>
-                        </Grid>
-                    </DataTemplate>
-                 </CollectionView.ItemTemplate>
+                                            <CollectionView ItemsSource="{Binding expenses}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Margin="0,0,0,10">
+                                                            <Frame BackgroundColor="White"
+                                                                   HasShadow="False"
+                                                                   CornerRadius="12"
+                                                                   Padding="15">
+                                                                
+                                                                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
+                                                                      ColumnDefinitions="*,Auto">
+                                                                    
+                                                                    <!-- Expense Name -->
+                                                                    <Label Grid.Row="0" Grid.Column="0"
+                                                                           Text="{Binding name}"
+                                                                           FontSize="16"
+                                                                           FontAttributes="Bold"
+                                                                           TextColor="#333333" />
+                                                                    
+                                                                    <!-- Amount -->
+                                                                    <Label Grid.Row="0" Grid.Column="1"
+                                                                           Text="{Binding amount, StringFormat='${0:F2}'}"
+                                                                           FontSize="16"
+                                                                           FontAttributes="Bold"
+                                                                           TextColor="#28a745"
+                                                                           HorizontalOptions="End" />
+                                                                    
+                                                                    <!-- Category -->
+                                                                    <Label Grid.Row="1" Grid.Column="0"
+                                                                           Text="{Binding category, StringFormat='Category: {0}'}"
+                                                                           FontSize="14" 
+                                                                           TextColor="#666666"
+                                                                           IsVisible="{Binding category, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+                                                                    
+                                                                    <!-- Description -->
+                                                                    <Label Grid.Row="2" Grid.Column="0"
+                                                                           Text="{Binding description}"
+                                                                           FontSize="14"
+                                                                           TextColor="#999999"
+                                                                           IsVisible="{Binding description, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+                                                                    
+                                                                    <!-- Date -->
+                                                                    <Label Grid.Row="3" Grid.Column="0"
+                                                                           FontSize="14"
+                                                                           TextColor="#999999">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="{Binding month, StringFormat='{0:D2}'}" />
+                                                                                <Span Text="/" />
+                                                                                <Span Text="{Binding Day, StringFormat='{0:D2}'}" />
+                                                                                <Span Text="/" />
+                                                                                <Span Text="{Binding year}" />
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                    
+                                                                    <!-- Frequency (for recurring expenses) -->
+                                                                    <Label Grid.Row="4" Grid.Column="0"
+                                                                           Text="{Binding frequency, StringFormat='Frequency: {0}'}"
+                                                                           FontSize="14"
+                                                                           TextColor="#999999"
+                                                                           IsVisible="{Binding Recurring}" />
+                                                                    
+                                                                    <!-- Remove Button -->
+                                                                    <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="5"
+                                                                            Text="Remove"
+                                                                            Clicked="RemoveExpenseClicked"
+                                                                            Style="{StaticResource DangerButtonStyle}"
+                                                                            HorizontalOptions="End"
+                                                                            VerticalOptions="Start" />
+                                                                </Grid>
+                                                            </Frame>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
                                                 
                                                 <!-- Empty State -->
                                                 <CollectionView.EmptyView>
                                                     <Label Text="No expenses yet"
                                                            HorizontalOptions="Center"
                                                            TextColor="#999999"
-                                                          
                                                            Margin="0,10"/>
                                                 </CollectionView.EmptyView>
                                             </CollectionView>
@@ -333,7 +344,7 @@
                                        FontAttributes="Bold"
                                        HorizontalOptions="Center"
                                        TextColor="#666666"/>
-                                <Label Text="Add your first expense to get started!"
+                                <Label Text="Add family members first, then start tracking expenses!"
                                        FontSize="14"
                                        HorizontalOptions="Center"
                                        TextColor="#999999"
