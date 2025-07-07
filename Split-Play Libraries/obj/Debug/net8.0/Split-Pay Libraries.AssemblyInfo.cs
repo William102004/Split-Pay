@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Split-Pay Libraries")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdedaca604ffa59a35a047064d8831b9c311445c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9e8cb320ed7a0ae638103f2dc8a3004a8ee79eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Split-Pay Libraries")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Split-Pay Libraries")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

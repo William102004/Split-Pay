@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UHT/JdUIWOI=",
+  "dgSpecHash": "sEiaeOM0Vwc=",
   "success": true,
   "projectFilePath": "/Users/williamalmaguer/Split-Pay-1/Split-Play Libraries/Split-Pay Libraries.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "/Users/williamalmaguer/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.ios.ref.net8.0_18.0/18.0.8319/microsoft.ios.ref.net8.0_18.0.18.0.8319.nupkg.sha512",
+    "/Users/williamalmaguer/.nuget/packages/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0/18.0.8319/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0.18.0.8319.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
     "/Users/williamalmaguer/.nuget/packages/microsoft.android.ref.34/34.0.145/microsoft.android.ref.34.34.0.145.nupkg.sha512",
